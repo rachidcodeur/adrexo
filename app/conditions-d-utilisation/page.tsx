@@ -34,10 +34,7 @@ export default function ConditionsUtilisation() {
               <h2 className="text-h3 text-primary font-semibold">2. Informations Légales</h2>
               <div className="bg-gray-verylight p-6 rounded-lg">
                 <p className="font-semibold mb-2">Adrexo.net</p>
-                <p>123 Rue de la Distribution</p>
-                <p>75001 Paris, France</p>
-                <p className="mt-2">SIRET : [Numéro SIRET]</p>
-                <p>RCS : [Numéro RCS]</p>
+                <p>Adrexo.net est une filiale de FRANCE DISTRIBUTION</p>
               </div>
             </section>
 
@@ -246,7 +243,7 @@ export default function ConditionsUtilisation() {
               </p>
               <div className="bg-gray-verylight p-6 rounded-lg mt-4">
                 <p className="font-semibold mb-2">Adrexo.net</p>
-                <p className="mt-2">123 Rue de la Distribution<br />75001 Paris, France</p>
+                <p className="mt-2">Contactez-nous via le formulaire disponible sur notre site.</p>
               </div>
             </section>
           </div>

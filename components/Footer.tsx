@@ -13,7 +13,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-primary py-20">
+    <footer className="bg-primary pt-20 pb-8">
       <div className="section-container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* ADREXO */}
@@ -87,9 +87,12 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-white border-opacity-20 pt-8 text-center">
-          <p className="text-caption text-white opacity-80">
+        <div className="border-t border-white border-opacity-20 pt-6 pb-2 text-center">
+          <p className="text-caption text-white opacity-80 mb-2">
             © 2023 Adrexo.net. Tous droits réservés.
+          </p>
+          <p className="text-xs text-white opacity-70">
+            Adrexo.net est une filiale de FRANCE DISTRIBUTION
           </p>
         </div>
       </div>

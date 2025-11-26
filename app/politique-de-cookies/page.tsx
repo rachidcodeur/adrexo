@@ -198,7 +198,7 @@ export default function PolitiqueCookies() {
               </p>
               <div className="bg-gray-verylight p-6 rounded-lg mt-4">
                 <p className="font-semibold mb-2">Adrexo.net</p>
-                <p className="mt-2">123 Rue de la Distribution<br />75001 Paris, France</p>
+                <p className="mt-2">Contactez-nous via le formulaire disponible sur notre site.</p>
               </div>
             </section>
           </div>

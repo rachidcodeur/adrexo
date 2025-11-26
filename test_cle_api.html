@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Clé API Supabase</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #7C3DC0;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        textarea {
+            height: 100px;
+            font-family: monospace;
+        }
+        button {
+            background: #7C3DC0;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #6A2BAE;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Test de la Clé API Supabase</h1>
+        <p>Ce test permet de vérifier si votre clé API fonctionne correctement.</p>
+        
+        <div class="input-group">
+            <label for="url">URL Supabase:</label>
+            <input type="text" id="url" placeholder="https://votre-projet.supabase.co" value="https://ltylxkpzujydcrccsyol.supabase.co">
+        </div>
+        
+        <div class="input-group">
+            <label for="key">Clé API (anon public):</label>
+            <textarea id="key" placeholder="Collez votre clé NEXT_PUBLIC_SUPABASE_ANON_KEY ici"></textarea>
+        </div>
+        
+        <button onclick="testConnection()">🔍 Tester la Connexion</button>
+        <button onclick="testInsert()">📝 Tester l'Insertion</button>
+        <button onclick="clearResults()">🗑️ Effacer</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let supabaseClient = null;
+
+        function clearResults() {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function showResult(message, type = 'info') {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<div class="result ${type}">${message}</div>`;
+        }
+
+        function testConnection() {
+            const url = document.getElementById('url').value.trim();
+            const key = document.getElementById('key').value.trim();
+
+            if (!url || !key) {
+                showResult('❌ Veuillez remplir l\'URL et la clé API', 'error');
+                return;
+            }
+
+            try {
+                supabaseClient = window.supabase.createClient(url, key);
+                showResult('✅ Client Supabase créé avec succès!', 'success');
+            } catch (error) {
+                showResult(`❌ Erreur lors de la création du client: ${error.message}`, 'error');
+            }
+        }
+
+        async function testInsert() {
+            const url = document.getElementById('url').value.trim();
+            const key = document.getElementById('key').value.trim();
+
+            if (!url || !key) {
+                showResult('❌ Veuillez remplir l\'URL et la clé API', 'error');
+                return;
+            }
+
+            if (!supabaseClient) {
+                try {
+                    supabaseClient = window.supabase.createClient(url, key);
+                } catch (error) {
+                    showResult(`❌ Erreur lors de la création du client: ${error.message}`, 'error');
+                    return;
+                }
+            }
+
+            showResult('⏳ Test d\'insertion en cours...', 'info');
+
+            const testData = {
+                nom: 'Test Clé API',
+                telephone: '0612345678',
+                email: 'test-cle-api-' + Date.now() + '@example.com',
+                sujet: 'Test',
+                ville: 'Paris',
+                message: 'Test de la clé API depuis le navigateur'
+            };
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('adrexo_contact_submissions')
+                    .insert([testData])
+                    .select();
+
+                if (error) {
+                    let errorMsg = `<strong>❌ Erreur lors de l'insertion:</strong><br>`;
+                    errorMsg += `<pre>Code: ${error.code || 'N/A'}<br>`;
+                    errorMsg += `Message: ${error.message || 'N/A'}<br>`;
+                    errorMsg += `Details: ${error.details || 'N/A'}<br>`;
+                    errorMsg += `Hint: ${error.hint || 'N/A'}</pre>`;
+                    
+                    if (error.code === '42501') {
+                        errorMsg += '<br><strong>⚠️ Erreur RLS:</strong> La politique RLS bloque l\'insertion.';
+                    } else if (error.code === 'PGRST301' || error.message?.includes('JWT')) {
+                        errorMsg += '<br><strong>⚠️ Erreur d\'authentification:</strong> La clé API est incorrecte ou expirée.';
+                    } else if (error.message?.includes('401')) {
+                        errorMsg += '<br><strong>⚠️ Erreur 401:</strong> La clé API n\'est pas valide. Vérifiez que vous utilisez la clé "anon public" (pas la service_role).';
+                    }
+                    
+                    showResult(errorMsg, 'error');
+                } else {
+                    let successMsg = `<strong>✅ Insertion réussie!</strong><br>`;
+                    successMsg += `<pre>ID: ${data[0].id}<br>`;
+                    successMsg += `Email: ${data[0].email}<br>`;
+                    successMsg += `Date: ${new Date(data[0].created_at).toLocaleString('fr-FR')}</pre>`;
+                    successMsg += '<br><strong>🎉 Votre clé API fonctionne correctement!</strong>';
+                    showResult(successMsg, 'success');
+                }
+            } catch (error) {
+                showResult(`❌ Erreur inattendue: ${error.message}`, 'error');
+            }
+        }
+
+        // Charger les valeurs depuis localStorage si disponibles
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedUrl = localStorage.getItem('supabase_test_url');
+            const savedKey = localStorage.getItem('supabase_test_key');
+            if (savedUrl) document.getElementById('url').value = savedUrl;
+            if (savedKey) document.getElementById('key').value = savedKey;
+        });
+
+        // Sauvegarder les valeurs
+        document.getElementById('url').addEventListener('change', (e) => {
+            localStorage.setItem('supabase_test_url', e.target.value);
+        });
+        document.getElementById('key').addEventListener('change', (e) => {
+            localStorage.setItem('supabase_test_key', e.target.value);
+        });
+    </script>
+</body>
+</html>
+

@@ -156,7 +156,33 @@ export default function ContactForm() {
         throw new Error('Supabase n\'est pas configuré. Vérifiez que NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY sont définis dans votre fichier .env.local et redémarrez le serveur.')
       }
 
-      const { data, error } = await supabase
+      // Logs de débogage
+      console.log('🔍 Debug Supabase:', {
+        url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + '...',
+        hasKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+        keyLength: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.length,
+        keyStart: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...'
+      })
+
+      // Vérifier que le client Supabase est correctement configuré
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        throw new Error('Le client Supabase n\'est pas correctement configuré. Vérifiez vos variables d\'environnement dans .env.local et redémarrez le serveur.')
+      }
+
+      // Créer un nouveau client avec les variables actuelles pour garantir qu'elles sont à jour
+      const { createClient: createSupabaseClient } = await import('@supabase/supabase-js')
+      const currentSupabase = createSupabaseClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        {
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+          },
+        }
+      )
+
+      const { data, error } = await currentSupabase
         .from('adrexo_contact_submissions')
         .insert([
           {
@@ -172,16 +198,27 @@ export default function ContactForm() {
 
       if (error) {
         console.error('Error submitting form:', error)
+        console.error('Error details:', {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        })
         
         // Messages d'erreur plus explicites
         let errorMsg = 'Une erreur est survenue lors de l\'envoi.'
         
         if (error.code === 'PGRST116') {
           errorMsg = 'La table n\'existe pas dans la base de données. Vérifiez que la migration SQL a été exécutée.'
-        } else if (error.code === '42501') {
-          errorMsg = 'Permission refusée. Vérifiez les politiques RLS dans Supabase.'
+        } else if (error.code === '42501' || error.message?.includes('row-level security') || error.message?.includes('RLS')) {
+          errorMsg = 'Permission refusée par la politique RLS. Exécutez le script fix_rls_DEFINITIF.sql dans Supabase. Si l\'erreur persiste, vérifiez aussi votre clé API (erreur 401).'
+        } else if (error.code === 'PGRST301' || error.message?.includes('JWT') || error.message?.includes('401')) {
+          errorMsg = 'Erreur d\'authentification (401). Vérifiez que vous utilisez NEXT_PUBLIC_SUPABASE_ANON_KEY (clé "anon public" dans Supabase, pas la service_role).'
         } else if (error.message) {
           errorMsg = `Erreur: ${error.message}`
+          if (error.hint) {
+            errorMsg += ` (${error.hint})`
+          }
         }
         
         setErrorMessage(errorMsg)

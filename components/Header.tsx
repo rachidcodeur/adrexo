@@ -3,10 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function Header() {
   const headerRef = useRef<HTMLElement>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     // Import dynamique de GSAP pour éviter les problèmes SSR
@@ -34,10 +38,17 @@ export default function Header() {
   }, [])
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setIsMenuOpen(false)
+    setIsMenuOpen(false)
+    
+    if (isHomePage) {
+      // Si on est sur la page d'accueil, on scroll vers la section
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else {
+      // Si on est sur une autre page, on redirige vers la page d'accueil avec l'ancre
+      router.push(`/#${id}`)
     }
   }
 
