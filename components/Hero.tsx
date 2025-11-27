@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { Mail, Phone } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -246,14 +246,6 @@ export default function Hero() {
           >
             <Mail className="inline-block mr-2 w-5 h-5" />
             Demander un devis gratuit
-          </button>
-          
-          <button
-            onClick={scrollToContact}
-            className="btn-primary bg-white text-primary hover:bg-primary-pastel hover:scale-105 transition-transform duration-200"
-          >
-            <Phone className="inline-block mr-2 w-5 h-5" />
-            Nous contacter
           </button>
         </div>
       </div>

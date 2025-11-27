@@ -73,3 +73,4 @@ Pour que votre site fonctionne immédiatement :
 - [ ] Testé le formulaire sur le site
 - [ ] Si ça fonctionne, noté de réactiver RLS plus tard
 
+
