@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary pt-20 pb-8">
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* ADREXO */}
           <div>
             <h3 className="text-h4 text-white mb-4">ADREXO</h3>
@@ -23,6 +23,37 @@ export default function Footer() {
               Votre partenaire de confiance pour une distribution en boîtes aux lettres 
               fiable, traçable et professionnelle avec GPS et garantie SOLO.
             </p>
+          </div>
+          
+          {/* Nos services */}
+          <div>
+            <h4 className="text-body font-semibold text-white mb-4">Nos services</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/street-marketing"
+                  className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
+                >
+                  Street marketing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/distribution-tracts-municipaux"
+                  className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
+                >
+                  Distribution de tract municipal
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/distribution-journaux-municipaux"
+                  className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
+                >
+                  Distribution de journal municipal
+                </Link>
+              </li>
+            </ul>
           </div>
           
           {/* Liens Rapides */}

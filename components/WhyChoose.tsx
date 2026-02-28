@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap } from 'gsap'
 
 const reasons = [
@@ -124,7 +125,11 @@ export default function WhyChoose() {
         </h2>
         
         <p className="text-body text-white mb-12 max-w-3xl opacity-95">
-          8 raisons qui font de nous votre partenaire de confiance
+          8 raisons qui font de nous votre partenaire de confiance. Nous assurons également la{' '}
+          <Link href="/distribution-tracts-municipaux" className="text-white font-semibold underline underline-offset-2 hover:opacity-90 transition-opacity">
+            distribution de tracts municipaux
+          </Link>{' '}
+          pour les mairies et collectivités.
         </p>
         
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

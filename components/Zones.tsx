@@ -1,22 +1,23 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap } from 'gsap'
 import { MapPin } from 'lucide-react'
 
-const zones = [
-  { name: 'Île-de-France', departments: ['75', '77', '78', '91', '92', '93', '94', '95'] },
-  { name: 'Auvergne-Rhône-Alpes', departments: ['01', '03', '07', '15', '26', '38', '42', '43', '63', '69', '73', '74'] },
-  { name: 'Provence-Alpes-Côte d\'Azur', departments: ['04', '05', '06', '13', '83', '84'] },
-  { name: 'Nouvelle-Aquitaine', departments: ['16', '17', '19', '23', '24', '33', '40', '47', '64', '79', '86', '87'] },
-  { name: 'Occitanie', departments: ['09', '11', '12', '30', '31', '32', '34', '46', '48', '65', '66', '81', '82'] },
-  { name: 'Hauts-de-France', departments: ['02', '59', '60', '62', '80'] },
-  { name: 'Grand Est', departments: ['08', '10', '51', '52', '54', '55', '57', '67', '68', '88'] },
-  { name: 'Normandie', departments: ['14', '27', '50', '61', '76'] },
-  { name: 'Bretagne', departments: ['22', '29', '35', '56'] },
-  { name: 'Pays de la Loire', departments: ['44', '49', '53', '72', '85'] },
-  { name: 'Centre-Val de Loire', departments: ['18', '28', '36', '37', '41', '45'] },
-  { name: 'Bourgogne-Franche-Comté', departments: ['21', '25', '39', '58', '70', '71', '89', '90'] },
+const regions = [
+  { name: 'Île-de-France', cities: ['Paris', 'Boulogne-Billancourt', 'Saint-Denis', 'Argenteuil', 'Montreuil', 'Nanterre'] },
+  { name: 'Auvergne-Rhône-Alpes', cities: ['Lyon', 'Saint-Étienne', 'Grenoble', 'Clermont-Ferrand', 'Annecy', 'Valence'] },
+  { name: 'Grand Est', cities: ['Strasbourg', 'Metz', 'Nancy', 'Mulhouse', 'Reims', 'Colmar'] },
+  { name: 'Nouvelle-Aquitaine', cities: ['Bordeaux', 'Pau', 'Limoges', 'Poitiers', 'La Rochelle', 'Bayonne'] },
+  { name: 'Pays de la Loire', cities: ['Nantes', 'Angers', 'Le Mans', 'Saint-Nazaire', 'Laval', 'Cholet'] },
+  { name: 'Normandie', cities: ['Le Havre', 'Rouen', 'Caen', 'Cherbourg-en-Cotentin', 'Évreux', 'Dieppe'] },
+  { name: 'Occitanie', cities: ['Toulouse', 'Montpellier', 'Nîmes', 'Perpignan', 'Béziers', 'Albi'] },
+  { name: 'Bretagne', cities: ['Rennes', 'Brest', 'Quimper', 'Lorient', 'Vannes', 'Saint-Brieuc'] },
+  { name: 'Centre-Val de Loire', cities: ['Orléans', 'Tours', 'Bourges', 'Blois', 'Châteauroux', 'Chartres'] },
+  { name: "Provence-Alpes-Côte d'Azur", cities: ['Marseille', 'Aix-en-Provence', 'Nice', 'Cannes', 'Toulon', 'Avignon'] },
+  { name: 'Hauts-de-France', cities: ['Lille', 'Amiens', 'Roubaix', 'Tourcoing', 'Dunkerque', 'Calais'] },
+  { name: 'Bourgogne-Franche-Comté', cities: ['Dijon', 'Besançon', 'Chalon-sur-Saône', 'Auxerre', 'Mâcon', 'Belfort'] },
 ]
 
 export default function Zones() {
@@ -167,15 +168,15 @@ export default function Zones() {
       
       <div className="section-container relative z-10">
         <h2 ref={titleRef} className="section-title">
-          Nos Zones de Distribution
+          Nos mairies d&apos;intervention
         </h2>
         
         <p className="text-body text-gray-dark mb-12 max-w-3xl">
-          Une couverture nationale pour distribuer tous vos supports de distribution
+          Une couverture nationale par régions : découvrez les grandes villes où nous intervenons pour la distribution de vos imprimés.
         </p>
         
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
-          {zones.map((zone, index) => (
+          {regions.map((region, index) => (
             <div 
               key={index} 
               className="rounded-lg overflow-hidden flex backdrop-blur-md bg-white/70 border border-white/20 shadow-lg"
@@ -190,10 +191,31 @@ export default function Zones() {
               <div className="flex-1 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
-                  <h3 className="text-body text-primary font-bold">{zone.name}</h3>
+                  <h3 className="text-body text-primary font-bold">{region.name}</h3>
                 </div>
                 <p className="text-body-sm text-gray-dark">
-                  {zone.departments.join(', ')}
+                  {region.cities.map((city, i) => (
+                    <span key={city}>
+                      {city === 'Paris' ? (
+                        <Link
+                          href="/distribution-flyers-paris"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Paris
+                        </Link>
+                      ) : city === 'Bordeaux' ? (
+                        <Link
+                          href="/distribution-flyers-bordeaux"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Bordeaux
+                        </Link>
+                      ) : (
+                        city
+                      )}
+                      {i < region.cities.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
                 </p>
               </div>
             </div>
@@ -201,7 +223,7 @@ export default function Zones() {
         </div>
         
         <p className="text-body text-gray-dark mt-12 text-center">
-          Votre zone n'est pas listée ? Contactez-nous pour être orienté ou pour affiner votre distribution dans votre secteur.
+          Votre ville n&apos;est pas listée ? Contactez-nous pour être orienté ou pour affiner votre distribution dans votre secteur.
         </p>
       </div>
     </section>

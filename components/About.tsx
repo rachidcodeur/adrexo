@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 
@@ -123,8 +124,12 @@ export default function About() {
             </p>
             
             <p className="text-body text-gray-dark">
-              Nous proposons des solutions sur mesure, adaptées à votre secteur d'activité et vos objectifs marketing. 
-              La qualité et la satisfaction client sont au cœur de notre mission, avec une garantie SOLO qui assure 
+              Nous proposons des solutions sur mesure, adaptées à votre secteur d'activité et vos objectifs marketing, 
+              notamment la{' '}
+              <Link href="/distribution-journaux-municipaux" className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors">
+                distribution de journaux et bulletins municipaux
+              </Link>{' '}
+              pour les collectivités. La qualité et la satisfaction client sont au cœur de notre mission, avec une garantie SOLO qui assure 
               qu'une seule personne distribue vos documents dans chaque zone.
             </p>
           </div>

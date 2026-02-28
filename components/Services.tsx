@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap } from 'gsap'
 import { ShoppingCart, Building, Briefcase, Printer } from 'lucide-react'
 
@@ -133,7 +134,10 @@ export default function Services() {
         </h2>
         
         <p className="text-body text-gray-dark mb-12 max-w-3xl">
-          Des solutions adaptées à chaque besoin professionnel
+          Des solutions adaptées à chaque besoin professionnel. Découvrez notre expertise en{' '}
+          <Link href="/street-marketing" className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors">
+            street marketing
+          </Link>.
         </p>
         
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">

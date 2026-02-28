@@ -10,7 +10,6 @@ export default function Hero() {
   const buttonsRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
   const shapesRef = useRef<HTMLDivElement>(null)
-  const waveRef = useRef<SVGPathElement>(null)
 
   useEffect(() => {
     // Initialiser les éléments comme visibles par défaut
@@ -107,29 +106,9 @@ export default function Hero() {
       })
     }
 
-    // Animation de la vague organique
-    if (waveRef.current) {
-      const wave = waveRef.current
-      const originalPath = 'M0,200 Q200,150 400,170 Q600,190 800,180 Q1000,170 1200,175 T1440,180 L1440,200 L0,200 Z'
-      
-      // Animation fluide de la vague au repos
-      gsap.to(wave, {
-        attr: {
-          d: originalPath
-        },
-        duration: 4,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-      })
-    }
-
-    // Animation de parallaxe et redressement de la vague au scroll
+    // Parallaxe des formes au scroll
     const handleScroll = () => {
       const scrolled = window.scrollY
-      const maxScroll = 400 // Distance de scroll pour que la vague soit complètement droite
-      const progress = Math.min(scrolled / maxScroll, 1)
-      
       if (shapesRef.current) {
         gsap.to(shapesRef.current, {
           y: scrolled * 0.3,
@@ -137,47 +116,8 @@ export default function Hero() {
           duration: 0.5,
         })
       }
-      
-      if (waveRef.current) {
-        const wave = waveRef.current
-        const originalPath = 'M0,200 Q200,150 400,170 Q600,190 800,180 Q1000,170 1200,175 T1440,180 L1440,200 L0,200 Z'
-        const straightPath = 'M0,200 L1440,200 L1440,200 L0,200 Z'
-        
-        // Interpolation fluide entre la forme organique et la ligne droite
-        // Calculer les points de contrôle interpolés
-        const easeProgress = progress * progress * (3 - 2 * progress) // Smoothstep pour une transition plus fluide
-        
-        if (easeProgress === 0) {
-          // Forme organique complète
-          gsap.set(wave, { attr: { d: originalPath } })
-        } else if (easeProgress === 1) {
-          // Ligne droite complète
-          gsap.set(wave, { attr: { d: straightPath } })
-        } else {
-          // Interpolation progressive
-          // Réduire progressivement les courbes jusqu'à obtenir une ligne droite
-          const curveHeight = 50 * (1 - easeProgress)
-          const x1 = 200 * (1 - easeProgress)
-          const x2 = 400 * (1 - easeProgress)
-          const x3 = 600 * (1 - easeProgress)
-          const x4 = 800 * (1 - easeProgress)
-          const x5 = 1000 * (1 - easeProgress)
-          const x6 = 1200 * (1 - easeProgress)
-          const x7 = 1440 * (1 - easeProgress)
-          
-          const y = 200 - curveHeight
-          
-          const intermediatePath = easeProgress < 0.95
-            ? `M0,200 Q${x1},${y} ${x2},${y} Q${x3},${y} ${x4},${y} Q${x5},${y} ${x6},${y} T${x7},${y} L1440,200 L0,200 Z`
-            : straightPath
-          
-          gsap.set(wave, { attr: { d: intermediatePath } })
-        }
-      }
     }
-
     window.addEventListener('scroll', handleScroll)
-
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
@@ -248,23 +188,6 @@ export default function Hero() {
             Demander un devis gratuit
           </button>
         </div>
-      </div>
-
-      {/* Vague animée organique en bas */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 h-48 md:h-64">
-        <svg
-          viewBox="0 0 1440 200"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            ref={waveRef}
-            d="M0,200 Q200,150 400,170 Q600,190 800,180 Q1000,170 1200,175 T1440,180 L1440,200 L0,200 Z"
-            fill="white"
-          />
-        </svg>
       </div>
     </section>
   )
