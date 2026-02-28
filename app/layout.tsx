@@ -44,7 +44,9 @@ export default function RootLayout({
     <html lang="fr" className={mont.variable}>
       <body className={mont.className}>
         <Header />
-        {children}
+        <main id="main-content" className="min-h-screen">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -119,10 +119,10 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white border-opacity-20 pt-6 pb-2 text-center">
-          <p className="text-caption text-white opacity-80 mb-2">
+          <p className="text-caption text-white mb-2">
             © 2023 Adrexo.net. Tous droits réservés.
           </p>
-          <p className="text-xs text-white opacity-70">
+          <p className="text-xs text-white">
             Adrexo.net est une filiale de FRANCE DISTRIBUTION
           </p>
         </div>

@@ -120,10 +120,10 @@ export default function DistributionFlyersBordeauxPage() {
               <Image
                 src="/images/services%20villes/distrinution%20journaux%20municipaux.webp"
                 alt="Distribution de journaux municipaux dans la métropole bordelaise"
-                width={800}
-                height={600}
+                width={600}
+                height={450}
                 className="w-full h-auto object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 40vw, 400px"
               />
             </div>
             <div className="order-2 lg:order-1">

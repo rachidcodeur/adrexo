@@ -29,7 +29,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <Hero />
       <About />
       <Atouts />
@@ -39,7 +39,7 @@ export default function Home() {
       <Testimonials />
       <ContactForm />
       <Security />
-    </main>
+    </div>
   )
 }
 
