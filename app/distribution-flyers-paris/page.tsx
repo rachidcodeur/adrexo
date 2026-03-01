@@ -26,7 +26,7 @@ export default function DistributionFlyersParisPage() {
               {/* Image juste après le titre en mobile */}
               <div className="mb-6 rounded-[18px] overflow-hidden shadow-card lg:hidden">
                 <Image
-                  src="/images/villes/paris.avif"
+                  src="/images/villes/paris.webp"
                   alt="Distribution de flyers à Paris"
                   width={800}
                   height={600}
@@ -47,7 +47,7 @@ export default function DistributionFlyersParisPage() {
             {/* Colonne image uniquement pour desktop */}
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-2 lg:order-1 hidden lg:block">
               <Image
-                src="/images/villes/paris.avif"
+                src="/images/villes/paris.webp"
                 alt="Distribution de flyers à Paris"
                 width={800}
                 height={600}
@@ -208,18 +208,37 @@ export default function DistributionFlyersParisPage() {
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-white">
         <div className="section-container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-h2 text-primary mb-6">
+            <h2 className="text-h2 text-primary mb-3">
               La distribution d&apos;imprimés à Paris
             </h2>
-            <p className="text-body text-gray-dark mb-6">
-              Paris présente une densité urbaine et une diversité de quartiers qui exigent une organisation adaptée pour la distribution de flyers, la distribution prospectus et la distribution d&apos;imprimés en général. Du centre (1er, 2e, 3e, 4e) aux arrondissements périphériques (18e, 19e, 20e), en passant par les quartiers d&apos;affaires (8e, 9e, 16e) et les zones résidentielles, nous couvrons l&apos;ensemble des secteurs avec des tournées optimisées. La distribution journal municipal et la distribution d&apos;imprimés publicitaires s&apos;appuient sur une bonne connaissance des flux et des typologies d&apos;habitat.
+            <p className="text-body text-gray-dark mb-10 font-medium text-lg">
+              Distribution en boîtes aux lettres et en main à main sur Paris et en Île-de-France
             </p>
+
+            <h3 className="text-h3 text-black mb-4 mt-8 first:mt-0">
+              Un levier efficace au cœur de la capitale
+            </h3>
             <p className="text-body text-gray-dark mb-6">
-              Les institutions et la Ville de Paris peuvent s&apos;appuyer sur des prestataires spécialisés pour la diffusion de leurs supports. Pour découvrir les actualités et publications officielles, rendez-vous sur{' '}
+              Dans une métropole aussi dense et concurrentielle que Paris, la distribution de flyers et de prospectus demeure l&apos;un des moyens les plus directs pour capter l&apos;attention d&apos;un public local et générer un impact immédiat. Entre les flux de piétons, la concentration de commerces et de zones résidentielles, la diffusion d&apos;imprimés publicitaires permet de toucher directement les foyers et les consommateurs au cœur des arrondissements parisiens, mais aussi dans la petite couronne : Boulogne-Billancourt, Issy-les-Moulineaux, Levallois-Perret, Neuilly-sur-Seine, Montreuil, Vincennes, Nanterre, Courbevoie, Colombes ou Asnières-sur-Seine. La distribution ciblée en boîtes aux lettres ou en main à main s&apos;intègre parfaitement aux habitudes urbaines.
+            </p>
+
+            <h3 className="text-h3 text-black mb-4 mt-8">
+              Ciblage géographique et couverture francilienne
+            </h3>
+            <p className="text-body text-gray-dark mb-6">
+              La distribution d&apos;imprimés à Paris et en Île-de-France permet un ciblage précis, par arrondissement, quartier, rue ou secteur stratégique, en tenant compte des typologies d&apos;habitat et des pôles d&apos;activité. Dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93) ou le Val-de-Marne (94), le flyer reste un support tangible, mémorisable et immédiatement visible, adapté aux lancements commerciaux, ouvertures de points de vente, promotions ou campagnes de notoriété locale. Contrairement aux canaux digitaux saturés, l&apos;imprimé publicitaire crée un contact direct et s&apos;inscrit dans le quotidien des prospects.
+            </p>
+
+            <h3 className="text-h3 text-black mb-4 mt-8">
+              Organisation rigoureuse et traçabilité
+            </h3>
+            <p className="text-body text-gray-dark mb-6">
+              Grâce à une organisation rigoureuse, des équipes terrain expérimentées et une connaissance du tissu urbain parisien et francilien, Adrexo.net optimise chaque campagne pour garantir une diffusion homogène, contrôlée et mesurable. Qu&apos;il s&apos;agisse de quartiers centraux comme le Marais, Montparnasse, Belleville, Batignolles ou Nation, ou de communes périphériques telles qu&apos;Aubervilliers, Pantin, Bobigny, Rueil-Malmaison, Suresnes, Clamart ou Antony, la distribution de flyers et prospectus s&apos;impose comme un outil stratégique pour développer la visibilité locale, générer du trafic et renforcer l&apos;impact de votre communication. Pour les actualités et publications officielles de la Ville, consultez le site de la{' '}
               <a href={MAIRIE_PARIS_URL} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors">
-                paris.fr
-              </a>. Adrexo.net intervient sur Paris et l&apos;Île-de-France pour une distribution de tracts, de prospectus et de magazines professionnelle et traçable.
+                Mairie de Paris
+              </a>.
             </p>
+
             <div className="mt-10 text-center">
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit

@@ -35,6 +35,8 @@ export const metadata: Metadata = {
   },
 }
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+
 export default function RootLayout({
   children,
 }: {
@@ -42,6 +44,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={mont.variable}>
+      <head>
+        {/* Préconnexion pour réduire la latence des requêtes critiques */}
+        <link rel="preconnect" href="https://adrexo.net" />
+        {supabaseUrl && (
+          <link rel="preconnect" href={supabaseUrl} crossOrigin="anonymous" />
+        )}
+      </head>
       <body className={mont.className}>
         <Header />
         <main id="main-content" className="min-h-screen">

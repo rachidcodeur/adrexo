@@ -122,7 +122,7 @@
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 6px 16px rgba(124, 61, 192, 0.3);
   }
 
-  /* Tailles des titres – page Street Marketing uniquement (mobile : -2px) */
+  /* Tailles des titres – pages Street Marketing et villes (mobile : -2px, desktop ci-dessous) */
   .street-marketing-page h1 {
     font-size: 25px;
   }
@@ -146,13 +146,13 @@
       font-size: 35px;
     }
     .street-marketing-page h2 {
-      font-size: 22px;
+      font-size: 25px;
     }
     .street-marketing-page h3 {
-      font-size: 20px;
+      font-size: 23px;
     }
     .street-marketing-page h4 {
-      font-size: 19px;
+      font-size: 20px;
     }
     .street-marketing-page h5 {
       font-size: 18px;

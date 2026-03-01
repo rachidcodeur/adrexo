@@ -1,8 +1,27 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+// Pages qui contiennent déjà un lien vers ces URLs dans le contenu → on ne répète pas dans le footer
+const CONTENT_LINKS_BY_PATH: Record<string, string[]> = {
+  '/': ['/street-marketing', '/distribution-tracts-municipaux', '/distribution-journaux-municipaux'],
+  '/distribution-flyers-paris': ['/street-marketing', '/distribution-tracts-municipaux', '/distribution-journaux-municipaux'],
+  '/distribution-flyers-bordeaux': ['/street-marketing', '/distribution-tracts-municipaux', '/distribution-journaux-municipaux'],
+  '/street-marketing': ['/distribution-journaux-municipaux', '/distribution-tracts-municipaux'],
+  '/distribution-tracts-municipaux': ['/distribution-journaux-municipaux', '/street-marketing'],
+  '/distribution-journaux-municipaux': ['/distribution-tracts-municipaux', '/street-marketing'],
+}
 
 export default function Footer() {
+  const pathname = usePathname()
+  const linksAlreadyInContent = CONTENT_LINKS_BY_PATH[pathname ?? ''] ?? []
+
+  const showServiceLink = (href: string) => {
+    if (pathname === href) return false // page actuelle, pas de lien vers soi
+    return !linksAlreadyInContent.includes(href)
+  }
+
   const scrollToSection = (id: string) => {
     if (typeof window !== 'undefined') {
       const element = document.getElementById(id)
@@ -25,33 +44,45 @@ export default function Footer() {
             </p>
           </div>
           
-          {/* Nos services */}
+          {/* Nos services — un seul lien par URL par page (pas de doublon avec le contenu) */}
           <div>
             <h4 className="text-body font-semibold text-white mb-4">Nos services</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/street-marketing"
-                  className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
-                >
-                  Street marketing
-                </Link>
+                {showServiceLink('/street-marketing') ? (
+                  <Link
+                    href="/street-marketing"
+                    className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
+                  >
+                    Street marketing
+                  </Link>
+                ) : (
+                  <span className="text-body-sm text-white opacity-90">Street marketing</span>
+                )}
               </li>
               <li>
-                <Link
-                  href="/distribution-tracts-municipaux"
-                  className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
-                >
-                  Distribution de tract municipal
-                </Link>
+                {showServiceLink('/distribution-tracts-municipaux') ? (
+                  <Link
+                    href="/distribution-tracts-municipaux"
+                    className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
+                  >
+                    Distribution de tract municipal
+                  </Link>
+                ) : (
+                  <span className="text-body-sm text-white opacity-90">Distribution de tract municipal</span>
+                )}
               </li>
               <li>
-                <Link
-                  href="/distribution-journaux-municipaux"
-                  className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
-                >
-                  Distribution de journal municipal
-                </Link>
+                {showServiceLink('/distribution-journaux-municipaux') ? (
+                  <Link
+                    href="/distribution-journaux-municipaux"
+                    className="text-body-sm text-white opacity-90 hover:text-gray-200 transition-colors"
+                  >
+                    Distribution de journal municipal
+                  </Link>
+                ) : (
+                  <span className="text-body-sm text-white opacity-90">Distribution de journal municipal</span>
+                )}
               </li>
             </ul>
           </div>
