@@ -3,31 +3,30 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Distribution de flyers et imprimés publicitaires à Bordeaux | Adrexo.net',
+  title: 'Distribution de flyers et imprimés publicitaires à Toulouse | Adrexo.net',
   description:
-    'Distribution de flyers, prospectus, journaux et tracts à Bordeaux. Couverture des quartiers bordelais, traçabilité et devis gratuit pour vos campagnes d\'imprimés publicitaires.',
+    'Distribution de flyers, prospectus, journaux et tracts à Toulouse. Couverture de la métropole toulousaine, traçabilité et devis gratuit pour vos campagnes d\'imprimés publicitaires.',
 }
 
-const MAIRIE_BORDEAUX_URL = 'https://www.bordeaux.fr'
+const MAIRIE_TOULOUSE_URL = 'https://www.toulouse.fr'
+const TOULOUSE_TOURISME_URL = 'https://www.toulouse-tourisme.com'
 
-export default function DistributionFlyersBordeauxPage() {
+export default function DistributionFlyersToulousePage() {
   return (
     <div className="street-marketing-page min-h-screen bg-white">
       {/* 1. HERO — Image ville + texte */}
       <section className="pt-[160px] pb-[82px] bg-gray-50">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Colonne texte */}
             <div className="order-1 lg:order-2">
               <h1 className="text-h1 text-primary mb-6">
-                Distribution de flyers et d&apos;imprimés publicitaires à Bordeaux
+                Distribution de flyers et d&apos;imprimés publicitaires à Toulouse
               </h1>
 
-              {/* Image juste après le titre en mobile */}
               <div className="mb-6 rounded-[18px] overflow-hidden shadow-card lg:hidden">
                 <Image
-                  src="/images/villes/bordeaux.avif"
-                  alt="Campagne de distribution de flyers dans les rues bordelaises"
+                  src="/images/villes/toulouse.webp"
+                  alt="Distribution de flyers à Toulouse"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover"
@@ -37,9 +36,9 @@ export default function DistributionFlyersBordeauxPage() {
               </div>
 
               <p className="text-body text-gray-dark mb-8">
-                Adrexo.net accompagne les acteurs économiques et institutionnels bordelais dans la distribution
+                Adrexo.net accompagne les acteurs économiques et institutionnels toulousains dans la distribution
                 d&apos;imprimés : flyers, prospectus, journaux municipaux, tracts et magazines. Nos équipes couvrent
-                l&apos;ensemble de la métropole bordelaise avec des tournées structurées, une traçabilité rigoureuse et
+                l&apos;ensemble de la métropole toulousaine avec des tournées structurées, une traçabilité rigoureuse et
                 des rapports détaillés pour chaque campagne.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
@@ -47,11 +46,10 @@ export default function DistributionFlyersBordeauxPage() {
               </Link>
             </div>
 
-            {/* Colonne image uniquement pour desktop */}
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-2 lg:order-1 hidden lg:block">
               <Image
-                src="/images/villes/bordeaux.avif"
-                alt="Vue de Bordeaux utilisée pour illustrer la distribution de flyers"
+                src="/images/villes/toulouse.webp"
+                alt="Vue de Toulouse pour illustrer la distribution de flyers"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -63,17 +61,17 @@ export default function DistributionFlyersBordeauxPage() {
         </div>
       </section>
 
-      {/* 2. Distribution de flyers et prospectus à Bordeaux */}
+      {/* 2. Distribution de flyers et prospectus à Toulouse */}
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-white">
         <div className="section-container">
           <h2 className="text-h2 text-primary mb-6">
-            Distribution de flyers et prospectus à Bordeaux
+            Distribution de flyers et prospectus à Toulouse
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card">
               <Image
                 src="/images/services%20villes/distri%20flyers%20et%20propectus.webp"
-                alt="Distribution de flyers et prospectus auprès du public bordelais"
+                alt="Distribution de flyers et prospectus auprès du public toulousain"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -82,24 +80,20 @@ export default function DistributionFlyersBordeauxPage() {
             </div>
             <div>
               <p className="text-body text-gray-dark mb-6">
-                À Bordeaux, la distribution de flyers et la distribution de prospectus permettent de toucher les
-                habitants là où ils vivent, se déplacent et consomment réellement. Nous mettons en place des tournées
-                adaptées aux quartiers que vous ciblez : centre historique, Quinconces, Mériadeck, Chartrons, rive
-                droite, zones commerciales ou zones d&apos;activité. Chaque opération est pensée pour optimiser la
-                diffusion de vos imprimés publicitaires.
+                À Toulouse, la distribution de flyers et la distribution de prospectus permettent de toucher les
+                habitants là où ils vivent, se déplacent et consomment : centre-ville, Capitole, Saint-Cyprien, Carmes,
+                Compans-Caffarelli, zones commerciales et communes de la métropole. Chaque opération est pensée pour
+                optimiser la diffusion de vos imprimés publicitaires.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                Les distributions peuvent être réalisées en boîtes aux lettres ou en main à main, selon la nature de
-                votre campagne. Les volumes sont planifiés quartier par quartier, avec un suivi précis des secteurs
-                couverts. Pour aller plus loin dans l&apos;animation terrain, la distribution de flyers peut être
-                complétée par des opérations de{' '}
+                Les distributions peuvent être réalisées en boîtes aux lettres ou en main à main. Pour renforcer
+                l&apos;animation terrain, la distribution de flyers peut être complétée par des opérations de{' '}
                 <Link
                   href="/street-marketing"
                   className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
                 >
                   street marketing
-                </Link>
-                .
+                </Link>.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -113,13 +107,13 @@ export default function DistributionFlyersBordeauxPage() {
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-gray-50">
         <div className="section-container">
           <h2 className="text-h2 text-primary mb-6">
-            Distribution de journaux municipaux
+            Distribution de journaux municipaux à Toulouse
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-1 lg:order-2">
               <Image
                 src="/images/services%20villes/distrinution%20journaux%20municipaux.webp"
-                alt="Distribution de journaux municipaux dans la métropole bordelaise"
+                alt="Distribution de journaux municipaux dans la métropole toulousaine"
                 width={600}
                 height={450}
                 className="w-full h-auto object-cover"
@@ -129,30 +123,27 @@ export default function DistributionFlyersBordeauxPage() {
             <div className="order-2 lg:order-1">
               <p className="text-body text-gray-dark mb-6">
                 La distribution de journaux municipaux et de bulletins d&apos;information locale est essentielle pour
-                maintenir le lien entre la collectivité bordelaise et ses habitants. Nous assurons la diffusion des
+                maintenir le lien entre Toulouse Métropole et ses habitants. Nous assurons la diffusion des
                 publications institutionnelles dans les immeubles et maisons individuelles, en veillant à couvrir les
-                secteurs définis par la mairie ou la communauté de communes. Les fréquences de parution et les délais
-                sont respectés afin que chaque numéro arrive à temps dans les boîtes aux lettres.
+                secteurs définis. Les fréquences de parution et les délais sont respectés.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                Pour connaître les informations officielles de la ville, les Bordelais peuvent consulter le site de la{' '}
+                Pour les informations officielles de la ville, consultez le site de la{' '}
                 <a
-                  href={MAIRIE_BORDEAUX_URL}
+                  href={MAIRIE_TOULOUSE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
                 >
-                  Mairie de Bordeaux
-                </a>
-                . De notre côté, nous mettons en œuvre des tournées adaptées au terrain et aux volumes à distribuer,
-                dans la continuité de notre offre de{' '}
+                  Mairie de Toulouse
+                </a>. Notre offre de{' '}
                 <Link
                   href="/distribution-journaux-municipaux"
                   className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
                 >
                   distribution de journaux municipaux
-                </Link>
-                .
+                </Link>{' '}
+                s&apos;étend à tout le territoire.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -162,17 +153,17 @@ export default function DistributionFlyersBordeauxPage() {
         </div>
       </section>
 
-      {/* 4. Distribution de magazines municipaux à Bordeaux */}
+      {/* 4. Distribution de magazines municipaux à Toulouse */}
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-white">
         <div className="section-container">
           <h2 className="text-h2 text-primary mb-6">
-            Distribution de magazines municipaux à Bordeaux
+            Distribution de magazines municipaux à Toulouse
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card">
               <Image
                 src="/images/services%20villes/distri%20magazine%20municipal.webp"
-                alt="Distribution de magazines municipaux aux habitants de Bordeaux"
+                alt="Distribution de magazines municipaux aux habitants de Toulouse"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -181,17 +172,15 @@ export default function DistributionFlyersBordeauxPage() {
             </div>
             <div>
               <p className="text-body text-gray-dark mb-6">
-                Les magazines municipaux bordelais présentent l&apos;actualité des quartiers, les projets urbains,
-                l&apos;agenda culturel et les services de proximité. La distribution de ces imprimés institutionnels
-                doit couvrir un tissu urbain varié : hypercentre, quartiers résidentiels, grands ensembles, zones en
-                renouvellement. Nous planifions les tournées de manière à respecter les dates de sortie, en coordonnant
-                volumes, secteurs et contraintes d&apos;accès aux immeubles.
+                Les magazines municipaux toulousains présentent l&apos;actualité des quartiers, les projets urbains et
+                l&apos;agenda culturel. La distribution de ces imprimés institutionnels doit couvrir un tissu urbain
+                varié : hypercentre, quartiers résidentiels, zones en renouvellement. Nous planifions les tournées en
+                respectant les dates de sortie et les périmètres définis.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                La distribution d&apos;imprimés pour les magazines municipaux à Bordeaux tient compte des particularités
-                locales : rues piétonnes, secteurs classés, boîtes aux lettres collectives, zones périurbaines. Qu&apos;il
-                s&apos;agisse d&apos;un support trimestriel ou d&apos;une publication plus fréquente, nous garantissons une
-                livraison complète et traçable, en lien avec vos équipes éditoriales.
+                La distribution d&apos;imprimés pour les magazines municipaux à Toulouse tient compte des
+                particularités locales : rues piétonnes, boîtes aux lettres collectives, communes de la métropole.
+                Nous garantissons une livraison complète et traçable.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -211,7 +200,7 @@ export default function DistributionFlyersBordeauxPage() {
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-1 lg:order-2">
               <Image
                 src="/images/services%20villes/distribution%20tract%20electoral.webp"
-                alt="Distribution de tracts électoraux dans les quartiers de Bordeaux"
+                alt="Distribution de tracts électoraux dans les quartiers de Toulouse"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -221,21 +210,13 @@ export default function DistributionFlyersBordeauxPage() {
             <div className="order-2 lg:order-1">
               <p className="text-body text-gray-dark mb-6">
                 En période électorale, la distribution de tracts doit respecter un calendrier précis et un cadre
-                réglementaire strict. À Bordeaux, les campagnes se déploient à l&apos;échelle des quartiers, des
-                circonscriptions ou de la métropole. Nous organisons la distribution d&apos;imprimés électoraux en boîtes
-                aux lettres et, lorsque cela est pertinent, en main à main, avec des équipes briefées et un suivi
-                permettant de documenter la diffusion.
+                réglementaire strict. À Toulouse, les campagnes se déploient à l&apos;échelle des quartiers, des
+                circonscriptions ou de la métropole. Nous organisons la distribution d&apos;imprimés électoraux en
+                boîtes aux lettres et en main à main, avec des équipes briefées et un suivi documenté.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                Les tournées sont adaptées aux périmètres définis pour chaque candidat ou liste, avec une attention
-                particulière portée aux délais de dépôt. Notre service de{' '}
-                <Link
-                  href="/distribution-tracts-municipaux"
-                  className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
-                >
-                  distribution de tracts municipaux et électoraux
-                </Link>{' '}
-                vous permet de piloter vos campagnes sur Bordeaux et dans les communes voisines en toute sérénité.
+                Les tournées sont adaptées aux périmètres définis pour chaque candidat ou liste. Nous intervenons sur
+                Toulouse et les communes de la métropole avec rigueur et traçabilité.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -250,56 +231,57 @@ export default function DistributionFlyersBordeauxPage() {
         <div className="section-container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-h2 text-primary mb-3">
-              La distribution d&apos;imprimés à Bordeaux
+              La distribution d&apos;imprimés à Toulouse
             </h2>
             <p className="text-body text-gray-dark mb-10 font-medium text-lg">
-              Distribution en boîtes aux lettres et en main à main sur Bordeaux et la métropole
+              Distribution en boîtes aux lettres et en main à main sur Toulouse et la métropole
             </p>
 
             <h3 className="text-h3 text-black mb-4 mt-8 first:mt-0">
-              Un levier efficace au cœur de la métropole bordelaise
+              Un levier efficace au cœur de la métropole toulousaine
             </h3>
             <p className="text-body text-gray-dark mb-6">
-              Dans une agglomération aussi attractive et dynamique que Bordeaux, la distribution de flyers et de
-              prospectus reste l&apos;un des moyens les plus directs pour toucher un public local et générer un impact
-              immédiat. Entre le centre-ville patrimonial, les quais rénovés, les quartiers en renouvellement et les
-              communes de la métropole — Mérignac, Talence, Pessac, Bègles, Villenave-d&apos;Ornon, Cenon, Floirac,
-              Lormont, Bruges ou Le Bouscat — la diffusion d&apos;imprimés publicitaires permet de cibler les foyers et
-              les consommateurs au plus près de leur quotidien. La distribution en boîtes aux lettres ou en main à main
-              s&apos;intègre parfaitement aux habitudes des Bordelais et des habitants de la métropole.
+              Dans une agglomération aussi dynamique que Toulouse, la distribution de flyers et de prospectus reste
+              l&apos;un des moyens les plus directs pour toucher un public local. Entre le centre-ville, les quartiers
+              en développement, les zones d&apos;activité et les communes de la métropole — Blagnac, Colomiers, Tournefeuille,
+              Ramonville-Saint-Agne, Balma, Castanet-Tolosan, Plaisance-du-Touch — la diffusion d&apos;imprimés
+              publicitaires permet de cibler les foyers et les consommateurs au plus près de leur quotidien.
             </p>
 
             <h3 className="text-h3 text-black mb-4 mt-8">
-              Ciblage géographique et couverture en Gironde
+              Ciblage géographique et couverture en Haute-Garonne
             </h3>
             <p className="text-body text-gray-dark mb-6">
-              La distribution d&apos;imprimés à Bordeaux et en métropole permet un ciblage précis, par quartier, par
-              commune ou par secteur stratégique, en tenant compte des typologies d&apos;habitat et des pôles
-              d&apos;activité. Du centre historique aux Chartrons, de la Bastide à Bacalan, des écoquartiers aux zones
-              commerciales, le flyer reste un support tangible et mémorisable, adapté aux lancements commerciaux,
-              ouvertures de points de vente, promotions ou campagnes de notoriété locale. Contrairement aux canaux digitaux
-              saturés, l&apos;imprimé publicitaire crée un contact direct et s&apos;inscrit dans le quotidien des
-              prospects.
+              La distribution d&apos;imprimés à Toulouse et en métropole permet un ciblage précis, par quartier, par
+              commune ou par secteur stratégique. Du Capitole aux Minimes, de Saint-Cyprien à Borderouge, le flyer
+              reste un support tangible et mémorisable, adapté aux lancements commerciaux, promotions ou campagnes de
+              notoriété locale. L&apos;imprimé publicitaire crée un contact direct et s&apos;inscrit dans le quotidien
+              des prospects.
             </p>
 
             <h3 className="text-h3 text-black mb-4 mt-8">
               Organisation rigoureuse et traçabilité
             </h3>
             <p className="text-body text-gray-dark mb-6">
-              Grâce à une organisation rigoureuse, des équipes terrain expérimentées et une connaissance du tissu
-              urbain bordelais et girondin, Adrexo.net optimise chaque campagne pour garantir une diffusion homogène,
-              contrôlée et mesurable. Qu&apos;il s&apos;agisse du centre-ville, des quartiers résidentiels, des zones
-              d&apos;activité ou des communes de la couronne — Saint-Médard-en-Jalles, Eysines, Blanquefort, Gradignan,
-              Martignas-sur-Jalle — la distribution de flyers et prospectus s&apos;impose comme un outil stratégique pour
-              développer la visibilité locale, générer du trafic et renforcer l&apos;impact de votre communication. Pour
-              les actualités et publications officielles de la ville, consultez le site de la{' '}
+              Grâce à une organisation rigoureuse et des équipes terrain expérimentées, Adrexo.net optimise chaque
+              campagne pour garantir une diffusion homogène, contrôlée et mesurable sur Toulouse et la Haute-Garonne.
+              Pour découvrir la ville, son patrimoine et ses événements, le site{' '}
               <a
-                href={MAIRIE_BORDEAUX_URL}
+                href={TOULOUSE_TOURISME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
               >
-                Mairie de Bordeaux
+                Toulouse Tourisme
+              </a>{' '}
+              est une référence. Pour les actualités officielles, consultez la{' '}
+              <a
+                href={MAIRIE_TOULOUSE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
+              >
+                Mairie de Toulouse
               </a>.
             </p>
 
@@ -314,4 +296,3 @@ export default function DistributionFlyersBordeauxPage() {
     </div>
   )
 }
-

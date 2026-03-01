@@ -8,6 +8,7 @@ const CONTENT_LINKS_BY_PATH: Record<string, string[]> = {
   '/': ['/street-marketing', '/distribution-tracts-municipaux', '/distribution-journaux-municipaux'],
   '/distribution-flyers-paris': ['/street-marketing', '/distribution-tracts-municipaux', '/distribution-journaux-municipaux'],
   '/distribution-flyers-bordeaux': ['/street-marketing', '/distribution-tracts-municipaux', '/distribution-journaux-municipaux'],
+  '/distribution-flyers-toulouse': ['/street-marketing', '/distribution-journaux-municipaux'],
   '/street-marketing': ['/distribution-journaux-municipaux', '/distribution-tracts-municipaux'],
   '/distribution-tracts-municipaux': ['/distribution-journaux-municipaux', '/street-marketing'],
   '/distribution-journaux-municipaux': ['/distribution-tracts-municipaux', '/street-marketing'],

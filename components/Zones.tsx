@@ -210,6 +210,13 @@ export default function Zones() {
                         >
                           Bordeaux
                         </Link>
+                      ) : city === 'Toulouse' ? (
+                        <Link
+                          href="/distribution-flyers-toulouse"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Toulouse
+                        </Link>
                       ) : (
                         city
                       )}
