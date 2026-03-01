@@ -115,11 +115,7 @@ export default function DistributionFlyersParisPage() {
             </div>
             <div className="order-2 lg:order-1">
               <p className="text-body text-gray-dark mb-6">
-                La distribution journal municipal et la distribution magazine municipal permettent à la Ville de Paris d&apos;informer les habitants de l&apos;actualité locale, des projets et des événements. À Paris, la communication institutionnelle repose sur une diffusion large et régulière des supports éditoriaux. Nous assurons une distribution complète et traçable dans les immeubles et boîtes aux lettres des secteurs définis, avec respect des fréquences et reporting détaillé. Pour les publications officielles, le site de la{' '}
-                <a href={MAIRIE_PARIS_URL} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors">
-                  Mairie de Paris
-                </a>{' '}
-                reste la référence.
+                La distribution journal municipal et la distribution magazine municipal permettent à la Ville de Paris d&apos;informer les habitants de l&apos;actualité locale, des projets et des événements. À Paris, la communication institutionnelle repose sur une diffusion large et régulière des supports éditoriaux. Nous assurons une distribution complète et traçable dans les immeubles et boîtes aux lettres des secteurs définis, avec respect des fréquences et reporting détaillé. Pour les publications officielles, le site paris.fr reste la référence.
               </p>
               <p className="text-body text-gray-dark mb-6">
                 La distribution de journaux municipaux à Paris s&apos;appuie sur une connaissance fine des îlots et des copropriétés. Que ce soit pour un journal d&apos;arrondissement ou à l&apos;échelle de la capitale, nous adaptons les tournées. Notre offre{' '}
@@ -155,7 +151,11 @@ export default function DistributionFlyersParisPage() {
             </div>
             <div>
               <p className="text-body text-gray-dark mb-6">
-                La distribution magazine municipal accompagne la Ville de Paris et les mairies d&apos;arrondissement dans la diffusion de leurs publications périodiques. Programmes culturels, agendas des équipements, bulletins d&apos;information et dossiers thématiques : la distribution d&apos;imprimés publicitaires et institutionnels à Paris doit couvrir un tissu urbain dense et varié. Nous organisons les tournées par secteur, en respectant les calendriers de parution et les périmètres définis (arrondissement, groupe d&apos;arrondissements ou Paris entier), avec un reporting précis pour justifier de la bonne diffusion.
+                La distribution magazine municipal accompagne la Ville de Paris et les mairies d&apos;arrondissement dans la diffusion de leurs publications périodiques. Programmes culturels, agendas des équipements, bulletins d&apos;information et dossiers thématiques : la distribution d&apos;imprimés publicitaires et institutionnels à Paris doit couvrir un tissu urbain dense et varié. Pour les publications officielles, le site de la{' '}
+                <a href={MAIRIE_PARIS_URL} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors">
+                  Mairie de Paris
+                </a>{' '}
+                reste la référence. Nous organisons les tournées par secteur, en respectant les calendriers de parution et les périmètres définis (arrondissement, groupe d&apos;arrondissements ou Paris entier), avec un reporting précis pour justifier de la bonne diffusion.
               </p>
               <p className="text-body text-gray-dark mb-6">
                 La distribution d&apos;imprimés pour les magazines municipaux à Paris s&apos;adapte aux spécificités des immeubles, des zones piétonnes et des boîtes aux lettres collectives. Que vous éditions un magazine trimestriel ou un bulletin plus fréquent, nous assurons une livraison complète et traçable.
@@ -233,10 +233,10 @@ export default function DistributionFlyersParisPage() {
               Organisation rigoureuse et traçabilité
             </h3>
             <p className="text-body text-gray-dark mb-6">
-              Grâce à une organisation rigoureuse, des équipes terrain expérimentées et une connaissance du tissu urbain parisien et francilien, Adrexo.net optimise chaque campagne pour garantir une diffusion homogène, contrôlée et mesurable. Qu&apos;il s&apos;agisse de quartiers centraux comme le Marais, Montparnasse, Belleville, Batignolles ou Nation, ou de communes périphériques telles qu&apos;Aubervilliers, Pantin, Bobigny, Rueil-Malmaison, Suresnes, Clamart ou Antony, la distribution de flyers et prospectus s&apos;impose comme un outil stratégique pour développer la visibilité locale, générer du trafic et renforcer l&apos;impact de votre communication. Pour les actualités et publications officielles de la Ville, consultez le site de la{' '}
-              <a href={MAIRIE_PARIS_URL} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors">
-                Mairie de Paris
-              </a>.
+              Grâce à une organisation rigoureuse, des équipes terrain expérimentées et une connaissance du tissu urbain parisien et francilien, Adrexo.net optimise chaque campagne pour garantir une diffusion homogène, contrôlée et mesurable. Qu&apos;il s&apos;agisse de quartiers centraux comme le Marais, Montparnasse, Belleville, Batignolles ou Nation, ou de communes périphériques telles qu&apos;Aubervilliers, Pantin, Bobigny, Rueil-Malmaison, Suresnes, Clamart ou Antony, la distribution de flyers et prospectus s&apos;impose comme un outil stratégique pour développer la visibilité locale, générer du trafic et renforcer l&apos;impact de votre communication.
+            </p>
+            <p className="text-body text-gray-dark mb-6">
+              Distribuer des flyers, distribuer des prospectus ou distribuer des tracts en boîtes aux lettres permet de faire connaître votre activité et d&apos;attirer l&apos;attention de vos cibles. Que vous soyez annonceur, imprimeur ou agence de communication, nos campagnes publicitaires s&apos;appuient sur des supports de communication personnalisés — dépliants, brochures, plaquette commerciale — pour une communication de proximité efficace. Nous intervenons en zone de chalandise et à proximité des points de vente pour une distribution des documents adaptée à votre stratégie de communication et à votre image.
             </p>
 
             <div className="mt-10 text-center">

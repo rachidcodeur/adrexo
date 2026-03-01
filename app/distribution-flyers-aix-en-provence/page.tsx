@@ -3,29 +3,29 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Distribution de flyers et imprimés publicitaires à Toulouse | Adrexo.net',
+  title: 'Distribution de flyers et imprimés publicitaires à Aix-en-Provence | Adrexo.net',
   description:
-    'Distribution de flyers, prospectus, journaux et tracts à Toulouse. Couverture de la métropole toulousaine, traçabilité et devis gratuit pour vos campagnes d\'imprimés publicitaires.',
+    'Distribution de flyers, prospectus, journaux et tracts à Aix-en-Provence. Couverture de la ville et de la métropole, traçabilité et devis gratuit pour vos campagnes d\'imprimés publicitaires.',
 }
 
-const MAIRIE_TOULOUSE_URL = 'https://www.toulouse.fr'
+const MAIRIE_AIX_URL = 'https://www.aix-en-provence.fr'
 
-export default function DistributionFlyersToulousePage() {
+export default function DistributionFlyersAixEnProvencePage() {
   return (
     <div className="street-marketing-page min-h-screen bg-white">
-      {/* 1. HERO — Image ville + texte */}
+      {/* 1. HERO */}
       <section className="pt-[160px] pb-[82px] bg-gray-50">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-1 lg:order-2">
               <h1 className="text-h1 text-primary mb-6">
-                Distribution de flyers et d&apos;imprimés publicitaires à Toulouse
+                Distribution de flyers et d&apos;imprimés publicitaires à Aix-en-Provence
               </h1>
 
               <div className="mb-6 rounded-[18px] overflow-hidden shadow-card lg:hidden">
                 <Image
-                  src="/images/villes/toulouse.webp"
-                  alt="Distribution de flyers à Toulouse"
+                  src="/images/villes/aix-en-provenence.webp"
+                  alt="Distribution de flyers à Aix-en-Provence"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover"
@@ -35,10 +35,10 @@ export default function DistributionFlyersToulousePage() {
               </div>
 
               <p className="text-body text-gray-dark mb-8">
-                Adrexo.net accompagne les acteurs économiques et institutionnels toulousains dans la distribution
+                Adrexo.net accompagne les acteurs économiques et institutionnels aixois dans la distribution
                 d&apos;imprimés : flyers, prospectus, journaux municipaux, tracts et magazines. Nos équipes couvrent
-                l&apos;ensemble de la métropole toulousaine avec des tournées structurées, une traçabilité rigoureuse et
-                des rapports détaillés pour chaque campagne.
+                Aix-en-Provence et les communes alentour au sein de la métropole Aix-Marseille-Provence, avec des
+                tournées structurées, une traçabilité rigoureuse et des rapports détaillés pour chaque campagne.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -47,8 +47,8 @@ export default function DistributionFlyersToulousePage() {
 
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-2 lg:order-1 hidden lg:block">
               <Image
-                src="/images/villes/toulouse.webp"
-                alt="Vue de Toulouse pour illustrer la distribution de flyers"
+                src="/images/villes/aix-en-provenence.webp"
+                alt="Vue d'Aix-en-Provence pour illustrer la distribution de flyers"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -60,17 +60,17 @@ export default function DistributionFlyersToulousePage() {
         </div>
       </section>
 
-      {/* 2. Distribution de flyers et prospectus à Toulouse */}
+      {/* 2. Distribution de flyers et prospectus */}
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-white">
         <div className="section-container">
           <h2 className="text-h2 text-primary mb-6">
-            Distribution de flyers et prospectus à Toulouse
+            Distribution de flyers et prospectus à Aix-en-Provence
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card">
               <Image
                 src="/images/services%20villes/distri%20flyers%20et%20propectus.webp"
-                alt="Distribution de flyers et prospectus auprès du public toulousain"
+                alt="Distribution de flyers et prospectus à Aix-en-Provence"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -79,10 +79,10 @@ export default function DistributionFlyersToulousePage() {
             </div>
             <div>
               <p className="text-body text-gray-dark mb-6">
-                À Toulouse, la distribution de flyers et la distribution de prospectus permettent de toucher les
-                habitants là où ils vivent, se déplacent et consomment : centre-ville, Capitole, Saint-Cyprien, Carmes,
-                Compans-Caffarelli, zones commerciales et communes de la métropole. Chaque opération est pensée pour
-                optimiser la diffusion de vos imprimés publicitaires.
+                À Aix-en-Provence, la distribution de flyers et la distribution de prospectus permettent de toucher les
+                habitants et les visiteurs : centre-ville, Cours Mirabeau, quartiers résidentiels, zones commerciales et
+                secteurs d&apos;activité. Chaque opération est pensée pour optimiser la diffusion de vos imprimés
+                publicitaires.
               </p>
               <p className="text-body text-gray-dark mb-6">
                 Les distributions peuvent être réalisées en boîtes aux lettres ou en main à main. Pour renforcer
@@ -106,13 +106,13 @@ export default function DistributionFlyersToulousePage() {
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-gray-50">
         <div className="section-container">
           <h2 className="text-h2 text-primary mb-6">
-            Distribution de journaux municipaux à Toulouse
+            Distribution de journaux municipaux à Aix-en-Provence
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-1 lg:order-2">
               <Image
                 src="/images/services%20villes/distrinution%20journaux%20municipaux.webp"
-                alt="Distribution de journaux municipaux dans la métropole toulousaine"
+                alt="Distribution de journaux municipaux à Aix-en-Provence"
                 width={600}
                 height={450}
                 className="w-full h-auto object-cover"
@@ -122,19 +122,13 @@ export default function DistributionFlyersToulousePage() {
             <div className="order-2 lg:order-1">
               <p className="text-body text-gray-dark mb-6">
                 La distribution de journaux municipaux et de bulletins d&apos;information locale est essentielle pour
-                maintenir le lien entre Toulouse Métropole et ses habitants. Nous assurons la diffusion des
+                maintenir le lien entre la Ville d&apos;Aix-en-Provence et ses habitants. Nous assurons la diffusion des
                 publications institutionnelles dans les immeubles et maisons individuelles, en veillant à couvrir les
                 secteurs définis. Les fréquences de parution et les délais sont respectés.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                Pour les informations officielles de la ville, consultez le site de la mairie. Notre offre de{' '}
-                <Link
-                  href="/distribution-journaux-municipaux"
-                  className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
-                >
-                  distribution de journaux municipaux
-                </Link>{' '}
-                s&apos;étend à tout le territoire.
+                Pour les informations officielles de la ville, les Aixois peuvent consulter le site de la mairie. Nous
+                mettons en œuvre des tournées adaptées au terrain et aux volumes à distribuer.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -144,17 +138,17 @@ export default function DistributionFlyersToulousePage() {
         </div>
       </section>
 
-      {/* 4. Distribution de magazines municipaux à Toulouse */}
+      {/* 4. Distribution de magazines municipaux */}
       <section className="py-11 md:py-[60px] lg:py-[100px] bg-white">
         <div className="section-container">
           <h2 className="text-h2 text-primary mb-6">
-            Distribution de magazines municipaux à Toulouse
+            Distribution de magazines municipaux à Aix-en-Provence
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card">
               <Image
                 src="/images/services%20villes/distri%20magazine%20municipal.webp"
-                alt="Distribution de magazines municipaux aux habitants de Toulouse"
+                alt="Distribution de magazines municipaux à Aix-en-Provence"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -163,15 +157,14 @@ export default function DistributionFlyersToulousePage() {
             </div>
             <div>
               <p className="text-body text-gray-dark mb-6">
-                Les magazines municipaux toulousains présentent l&apos;actualité des quartiers, les projets urbains et
+                Les magazines municipaux aixois présentent l&apos;actualité de la ville, les projets urbains et
                 l&apos;agenda culturel. La distribution de ces imprimés institutionnels doit couvrir un tissu urbain
-                varié : hypercentre, quartiers résidentiels, zones en renouvellement. Nous planifions les tournées en
+                varié : hypercentre, quartiers résidentiels, zones en développement. Nous planifions les tournées en
                 respectant les dates de sortie et les périmètres définis.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                La distribution d&apos;imprimés pour les magazines municipaux à Toulouse tient compte des
-                particularités locales : rues piétonnes, boîtes aux lettres collectives, communes de la métropole.
-                Nous garantissons une livraison complète et traçable.
+                La distribution d&apos;imprimés pour les magazines municipaux à Aix-en-Provence tient compte des
+                particularités locales. Nous garantissons une livraison complète et traçable.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -191,7 +184,7 @@ export default function DistributionFlyersToulousePage() {
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-1 lg:order-2">
               <Image
                 src="/images/services%20villes/distribution%20tract%20electoral.webp"
-                alt="Distribution de tracts électoraux dans les quartiers de Toulouse"
+                alt="Distribution de tracts électoraux à Aix-en-Provence"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -201,13 +194,27 @@ export default function DistributionFlyersToulousePage() {
             <div className="order-2 lg:order-1">
               <p className="text-body text-gray-dark mb-6">
                 En période électorale, la distribution de tracts doit respecter un calendrier précis et un cadre
-                réglementaire strict. À Toulouse, les campagnes se déploient à l&apos;échelle des quartiers, des
-                circonscriptions ou de la métropole. Nous organisons la distribution d&apos;imprimés électoraux en
-                boîtes aux lettres et en main à main, avec des équipes briefées et un suivi documenté.
+                réglementaire strict. À Aix-en-Provence, les campagnes se déploient à l&apos;échelle de la ville ou des
+                circonscriptions. Pour les actualités officielles, consultez le site de la{' '}
+                <a
+                  href={MAIRIE_AIX_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
+                >
+                  Mairie d&apos;Aix-en-Provence
+                </a>. Nous organisons la distribution d&apos;imprimés électoraux en boîtes aux lettres et
+                en main à main, avec des équipes briefées et un suivi documenté.
               </p>
               <p className="text-body text-gray-dark mb-6">
-                Les tournées sont adaptées aux périmètres définis pour chaque candidat ou liste. Nous intervenons sur
-                Toulouse et les communes de la métropole avec rigueur et traçabilité.
+                Notre service de{' '}
+                <Link
+                  href="/distribution-tracts-municipaux"
+                  className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
+                >
+                  distribution de tracts municipaux et électoraux
+                </Link>{' '}
+                vous permet de piloter vos campagnes sur Aix-en-Provence et les communes voisines en toute sérénité.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis gratuit
@@ -222,32 +229,32 @@ export default function DistributionFlyersToulousePage() {
         <div className="section-container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-h2 text-primary mb-3">
-              La distribution d&apos;imprimés à Toulouse
+              La distribution d&apos;imprimés à Aix-en-Provence
             </h2>
             <p className="text-body text-gray-dark mb-10 font-medium text-lg">
-              Distribution en boîtes aux lettres et en main à main sur Toulouse et la métropole
+              Distribution en boîtes aux lettres et en main à main sur Aix-en-Provence et ses environs
             </p>
 
             <h3 className="text-h3 text-black mb-4 mt-8 first:mt-0">
-              Un levier efficace au cœur de la métropole toulousaine
+              Un levier efficace au cœur du pays d&apos;Aix
             </h3>
             <p className="text-body text-gray-dark mb-6">
-              Dans une agglomération aussi dynamique que Toulouse, la distribution de flyers et de prospectus reste
-              l&apos;un des moyens les plus directs pour toucher un public local. Entre le centre-ville, les quartiers
-              en développement, les zones d&apos;activité et les communes de la métropole — Blagnac, Colomiers, Tournefeuille,
-              Ramonville-Saint-Agne, Balma, Castanet-Tolosan, Plaisance-du-Touch — la diffusion d&apos;imprimés
-              publicitaires permet de cibler les foyers et les consommateurs au plus près de leur quotidien.
+              Dans une ville aussi attractive qu&apos;Aix-en-Provence, la distribution de flyers et de prospectus reste
+              l&apos;un des moyens les plus directs pour toucher un public local et de passage. Entre le centre
+              historique, le Cours Mirabeau, les quartiers résidentiels et les zones d&apos;activité, la diffusion
+              d&apos;imprimés publicitaires permet de cibler les foyers et les consommateurs. La distribution en boîtes
+              aux lettres ou en main à main s&apos;intègre parfaitement aux habitudes des Aixois et des habitants des
+              communes voisines.
             </p>
 
             <h3 className="text-h3 text-black mb-4 mt-8">
-              Ciblage géographique et couverture en Haute-Garonne
+              Ciblage géographique et couverture
             </h3>
             <p className="text-body text-gray-dark mb-6">
-              La distribution d&apos;imprimés à Toulouse et en métropole permet un ciblage précis, par quartier, par
-              commune ou par secteur stratégique. Du Capitole aux Minimes, de Saint-Cyprien à Borderouge, le flyer
-              reste un support tangible et mémorisable, adapté aux lancements commerciaux, promotions ou campagnes de
-              notoriété locale. L&apos;imprimé publicitaire crée un contact direct et s&apos;inscrit dans le quotidien
-              des prospects.
+              La distribution d&apos;imprimés à Aix-en-Provence permet un ciblage précis, par quartier, par secteur ou
+              par zone définie. Le flyer reste un support tangible et mémorisable, adapté aux lancements commerciaux,
+              promotions ou campagnes de notoriété locale. L&apos;imprimé publicitaire crée un contact direct et
+              s&apos;inscrit dans le quotidien des prospects.
             </p>
 
             <h3 className="text-h3 text-black mb-4 mt-8">
@@ -255,19 +262,11 @@ export default function DistributionFlyersToulousePage() {
             </h3>
             <p className="text-body text-gray-dark mb-6">
               Grâce à une organisation rigoureuse et des équipes terrain expérimentées, Adrexo.net optimise chaque
-              campagne pour garantir une diffusion homogène, contrôlée et mesurable sur Toulouse et la Haute-Garonne.
-              Pour les actualités officielles de la ville, consultez la{' '}
-              <a
-                href={MAIRIE_TOULOUSE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
-              >
-                Mairie de Toulouse
-              </a>.
+              campagne pour garantir une diffusion homogène, contrôlée et mesurable sur Aix-en-Provence et les
+              Bouches-du-Rhône.
             </p>
             <p className="text-body text-gray-dark mb-6">
-              Distribuer des flyers et distribuer des tracts en boîtes aux lettres permet de faire connaître votre activité et d&apos;attirer l&apos;attention de vos cibles. En tant qu&apos;agence de street marketing et partenaire des annonceurs, nous mettons en œuvre des campagnes publicitaires avec des supports de communication personnalisés : dépliants, brochures, plaquette. Nos distributeurs assurent la distribution de documents sur votre zone de chalandise et à proximité des points de vente pour une stratégie de communication et un média de proximité efficaces.
+              Distribuer des flyers, distribuer des prospectus et distribuer des brochures en boîtes aux lettres permet de faire connaître votre image et d&apos;attirer l&apos;attention de vos cibles. Nos campagnes publicitaires et nos distributions de tracts s&apos;appuient sur des supports de communication — dépliants, plaquette, catalogues — pour une communication de proximité efficace. Distributeur de prospectus, distribution des journaux, zone de chalandise : nous assurons la distribution de documents sur votre zone pour une communication visuelle qui renforce votre point de vente et votre stratégie de communication.
             </p>
 
             <div className="mt-10 text-center">
