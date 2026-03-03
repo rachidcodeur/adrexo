@@ -238,6 +238,20 @@ export default function Zones() {
                         >
                           Lyon
                         </Link>
+                      ) : city === 'Grenoble' ? (
+                        <Link
+                          href="/distribution-flyers-grenoble"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Grenoble
+                        </Link>
+                      ) : city === 'Saint-Étienne' ? (
+                        <Link
+                          href="/distribution-flyers-saint-etienne"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Saint-Étienne
+                        </Link>
                       ) : city === 'Nice' ? (
                         <Link
                           href="/distribution-flyers-nice"
@@ -245,12 +259,61 @@ export default function Zones() {
                         >
                           Nice
                         </Link>
+                      ) : city === 'Toulon' ? (
+                        <Link
+                          href="/distribution-flyers-toulon"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Toulon
+                        </Link>
                       ) : city === 'Nantes' ? (
                         <Link
                           href="/distribution-flyers-nantes"
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Nantes
+                        </Link>
+                      ) : city === 'Angers' ? (
+                        <Link
+                          href="/distribution-flyers-angers"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Angers
+                        </Link>
+                      ) : city === 'Strasbourg' ? (
+                        <Link
+                          href="/distribution-flyers-strasbourg"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Strasbourg
+                        </Link>
+                      ) : city === 'Reims' ? (
+                        <Link
+                          href="/distribution-flyers-reims"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Reims
+                        </Link>
+                      ) : city === 'Rennes' ? (
+                        <Link
+                          href="/distribution-flyers-rennes"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Rennes
+                        </Link>
+                      ) : city === 'Le Havre' ? (
+                        <Link
+                          href="/distribution-flyers-le-havre"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Le Havre
+                        </Link>
+                      ) : city === 'Lille' ? (
+                        <Link
+                          href="/distribution-flyers-lille"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Lille
                         </Link>
                       ) : city === 'Montpellier' ? (
                         <Link
