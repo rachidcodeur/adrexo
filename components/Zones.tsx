@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
 import { MapPin } from 'lucide-react'
 
 const regions = [
@@ -25,118 +24,6 @@ export default function Zones() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
-  const lastScrollY = useRef(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const currentScrollY = window.scrollY
-          const isScrollingDown = currentScrollY > lastScrollY.current
-          lastScrollY.current = currentScrollY
-
-          if (entry.isIntersecting && isScrollingDown) {
-            // Réinitialiser les éléments avant l'animation seulement en scrollant vers le bas
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 0, y: 80, scale: 0.9 })
-            }
-            if (cardsRef.current) {
-              gsap.set(cardsRef.current.children, { opacity: 0, y: 80, scale: 0.85 })
-            }
-
-            const tl = gsap.timeline()
-            
-            if (titleRef.current) {
-              tl.to(
-                titleRef.current,
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  scale: 1,
-                  duration: 1.2, 
-                  ease: 'power3.out' 
-                }
-              )
-            }
-            
-            if (cardsRef.current) {
-              tl.to(
-                cardsRef.current.children,
-                {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  duration: 0.8,
-                  ease: 'back.out(1.3)',
-                  stagger: 0.08,
-                },
-                '-=0.6'
-              )
-            }
-          } else if (entry.isIntersecting && !isScrollingDown) {
-            // En remontant, garder les éléments visibles sans animation
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 1, y: 0, scale: 1 })
-            }
-            if (cardsRef.current) {
-              gsap.set(cardsRef.current.children, { opacity: 1, y: 0, scale: 1 })
-            }
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    // Animation des particules/boules
-    if (particlesRef.current) {
-      const particles = particlesRef.current.children
-      
-      Array.from(particles).forEach((particle, index) => {
-        const delay = index * 0.2
-        const duration = 3 + Math.random() * 2
-        const yMovement = 100 + Math.random() * 150
-        
-        // Animation de mouvement (vertical uniquement pour éviter le scroll horizontal)
-        gsap.to(particle, {
-          y: `+=${yMovement}`,
-          duration: duration,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-          delay: delay,
-        })
-        
-        // Animation de rotation
-        gsap.to(particle, {
-          rotation: 360,
-          duration: 4 + Math.random() * 3,
-          ease: 'none',
-          repeat: -1,
-          delay: delay,
-        })
-        
-        // Animation d'opacité
-        gsap.to(particle, {
-          opacity: 0.2 + Math.random() * 0.3,
-          duration: 2 + Math.random() * 2,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-          delay: delay,
-        })
-      })
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
-  }, [])
 
   return (
     <section id="zones" ref={sectionRef} className="section-spacing bg-white relative overflow-hidden">
@@ -203,6 +90,41 @@ export default function Zones() {
                         >
                           Paris
                         </Link>
+                      ) : city === 'Boulogne-Billancourt' ? (
+                        <Link
+                          href="/distribution-flyers-boulogne-billancourt"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Boulogne-Billancourt
+                        </Link>
+                      ) : city === 'Saint-Denis' ? (
+                        <Link
+                          href="/distribution-flyers-saint-denis"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Saint-Denis
+                        </Link>
+                      ) : city === 'Argenteuil' ? (
+                        <Link
+                          href="/distribution-flyers-argenteuil"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Argenteuil
+                        </Link>
+                      ) : city === 'Montreuil' ? (
+                        <Link
+                          href="/distribution-flyers-montreuil"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Montreuil
+                        </Link>
+                      ) : city === 'Nanterre' ? (
+                        <Link
+                          href="/distribution-flyers-nanterre"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Nanterre
+                        </Link>
                       ) : city === 'Bordeaux' ? (
                         <Link
                           href="/distribution-flyers-bordeaux"
@@ -245,6 +167,27 @@ export default function Zones() {
                         >
                           Grenoble
                         </Link>
+                      ) : city === 'Clermont-Ferrand' ? (
+                        <Link
+                          href="/distribution-flyers-clermont-ferrand"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Clermont-Ferrand
+                        </Link>
+                      ) : city === 'Annecy' ? (
+                        <Link
+                          href="/distribution-flyers-annecy"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Annecy
+                        </Link>
+                      ) : city === 'Valence' ? (
+                        <Link
+                          href="/distribution-flyers-valence"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Valence
+                        </Link>
                       ) : city === 'Saint-Étienne' ? (
                         <Link
                           href="/distribution-flyers-saint-etienne"
@@ -280,12 +223,33 @@ export default function Zones() {
                         >
                           Angers
                         </Link>
+                      ) : city === 'Dijon' ? (
+                        <Link
+                          href="/distribution-flyers-dijon"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Dijon
+                        </Link>
                       ) : city === 'Strasbourg' ? (
                         <Link
                           href="/distribution-flyers-strasbourg"
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Strasbourg
+                        </Link>
+                      ) : city === 'Metz' ? (
+                        <Link
+                          href="/distribution-flyers-metz"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Metz
+                        </Link>
+                      ) : city === 'Nancy' ? (
+                        <Link
+                          href="/distribution-flyers-nancy"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Nancy
                         </Link>
                       ) : city === 'Reims' ? (
                         <Link

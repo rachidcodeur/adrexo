@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import { useRef, useState } from 'react'
 import { Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
@@ -46,108 +45,7 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
-  const trackRef = useRef<HTMLDivElement>(null)
-  const lastScrollY = useRef(0)
   const [currentIndex, setCurrentIndex] = useState(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const currentScrollY = window.scrollY
-          const isScrollingDown = currentScrollY > lastScrollY.current
-          lastScrollY.current = currentScrollY
-
-          if (entry.isIntersecting && isScrollingDown) {
-            // Réinitialiser les éléments avant l'animation seulement en scrollant vers le bas
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 0, y: 80, scale: 0.9, x: 0 })
-            }
-            if (sliderRef.current) {
-              gsap.set(sliderRef.current, { opacity: 0, y: 60 })
-            }
-
-            const tl = gsap.timeline()
-            
-            if (titleRef.current) {
-              tl.to(
-                titleRef.current,
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  scale: 1,
-                  x: 0,
-                  duration: 1.2, 
-                  ease: 'power3.out' 
-                }
-              )
-            }
-            
-            if (sliderRef.current) {
-              tl.to(
-                sliderRef.current,
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 1,
-                  ease: 'power3.out',
-                },
-                '-=0.6'
-              )
-            }
-          } else if (entry.isIntersecting && !isScrollingDown) {
-            // En remontant, garder les éléments visibles sans animation
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 1, y: 0, scale: 1, x: 0 })
-            }
-            if (sliderRef.current) {
-              gsap.set(sliderRef.current, { opacity: 1, y: 0 })
-            }
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (trackRef.current) {
-      const cards = trackRef.current.children
-      
-      // Animation fluide du slider - centrer la carte active au milieu
-      // Chaque carte fait 33.33% de la largeur du container, on déplace d'une carte à la fois
-      gsap.to(trackRef.current, {
-        x: `-${currentIndex * (100 / 3)}%`,
-        duration: 0.8,
-        ease: 'power3.inOut',
-      })
-
-      // Animation des cartes individuelles avec effet de focus sur celle du milieu
-      Array.from(cards).forEach((card, index) => {
-        const distance = Math.abs(index - currentIndex)
-        const isActive = index === currentIndex
-        const isAdjacent = distance === 1 // Cartes à gauche et droite
-        
-        gsap.to(card, {
-          opacity: isActive ? 1 : (isAdjacent ? 0.4 : 0.2),
-          scale: isActive ? 1 : 0.92,
-          y: isActive ? 0 : 0,
-          duration: 0.6,
-          ease: 'power2.out',
-        })
-      })
-    }
-  }, [currentIndex])
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length)
@@ -176,9 +74,11 @@ export default function Testimonials() {
           {/* Slider Container */}
           <div className="overflow-hidden relative max-w-7xl mx-auto">
             <div 
-              ref={trackRef}
-              className="flex"
-              style={{ width: `${testimonials.length * (100 / 3)}%` }}
+              className="flex transition-transform duration-700 ease-in-out"
+              style={{
+                width: `${testimonials.length * (100 / 3)}%`,
+                transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+              }}
             >
               {testimonials.map((testimonial, index) => (
                 <div

@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
 import { ShoppingCart, Building, Briefcase, Printer } from 'lucide-react'
 
 const services = [
@@ -52,79 +51,6 @@ export default function Services() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
-  const lastScrollY = useRef(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const currentScrollY = window.scrollY
-          const isScrollingDown = currentScrollY > lastScrollY.current
-          lastScrollY.current = currentScrollY
-
-          if (entry.isIntersecting && isScrollingDown) {
-            // Réinitialiser les éléments avant l'animation seulement en scrollant vers le bas
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 0, y: 80, scale: 0.9 })
-            }
-            if (cardsRef.current) {
-              gsap.set(cardsRef.current.children, { opacity: 0, y: 120, scale: 0.75, rotation: -8 })
-            }
-
-            const tl = gsap.timeline()
-            
-            if (titleRef.current) {
-              tl.to(
-                titleRef.current,
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  scale: 1,
-                  duration: 1.2, 
-                  ease: 'power3.out' 
-                }
-              )
-            }
-            
-            if (cardsRef.current) {
-              tl.to(
-                cardsRef.current.children,
-                {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  rotation: 0,
-                  duration: 1,
-                  ease: 'back.out(1.4)',
-                  stagger: 0.18,
-                },
-                '-=0.6'
-              )
-            }
-          } else if (entry.isIntersecting && !isScrollingDown) {
-            // En remontant, garder les éléments visibles sans animation
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 1, y: 0, scale: 1 })
-            }
-            if (cardsRef.current) {
-              gsap.set(cardsRef.current.children, { opacity: 1, y: 0, scale: 1, rotation: 0 })
-            }
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
-  }, [])
 
   return (
     <section id="services" ref={sectionRef} className="section-spacing bg-white">

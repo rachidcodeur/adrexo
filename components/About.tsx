@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
-import { gsap } from 'gsap'
 import Image from 'next/image'
 
 export default function About() {
@@ -10,98 +9,6 @@ export default function About() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
-  const lastScrollY = useRef(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const currentScrollY = window.scrollY
-          const isScrollingDown = currentScrollY > lastScrollY.current
-          lastScrollY.current = currentScrollY
-
-          if (entry.isIntersecting && isScrollingDown) {
-            // Réinitialiser les éléments avant l'animation seulement en scrollant vers le bas
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 0, y: 80, scale: 0.9 })
-            }
-            if (contentRef.current) {
-              gsap.set(contentRef.current.children, { opacity: 0, y: 60, scale: 0.95 })
-            }
-            if (imageRef.current) {
-              gsap.set(imageRef.current, { opacity: 0, y: 60, scale: 0.9 })
-            }
-
-            const tl = gsap.timeline()
-            
-            if (titleRef.current) {
-              tl.to(
-                titleRef.current,
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  scale: 1,
-                  duration: 1.2, 
-                  ease: 'power3.out' 
-                }
-              )
-            }
-            
-            if (contentRef.current) {
-              tl.to(
-                contentRef.current.children,
-                {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  duration: 0.9,
-                  ease: 'power3.out',
-                  stagger: 0.15,
-                },
-                '-=0.6'
-              )
-            }
-
-            if (imageRef.current) {
-              tl.to(
-                imageRef.current,
-                {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  duration: 1,
-                  ease: 'power3.out',
-                },
-                '-=0.8'
-              )
-            }
-          } else if (entry.isIntersecting && !isScrollingDown) {
-            // En remontant, garder les éléments visibles sans animation
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 1, y: 0, scale: 1 })
-            }
-            if (contentRef.current) {
-              gsap.set(contentRef.current.children, { opacity: 1, y: 0, scale: 1 })
-            }
-            if (imageRef.current) {
-              gsap.set(imageRef.current, { opacity: 1, y: 0, scale: 1 })
-            }
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
-  }, [])
 
   return (
     <section ref={sectionRef} className="section-spacing bg-white">

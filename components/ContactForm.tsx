@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { useState, useRef } from 'react'
 import { Send, Shield, FileText, Search, Phone } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
@@ -22,117 +21,6 @@ export default function ContactForm() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
-  const lastScrollY = useRef(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const currentScrollY = window.scrollY
-          const isScrollingDown = currentScrollY > lastScrollY.current
-          lastScrollY.current = currentScrollY
-
-          if (entry.isIntersecting && isScrollingDown) {
-            // Réinitialiser les éléments avant l'animation seulement en scrollant vers le bas
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 0, y: 80, scale: 0.9 })
-            }
-            if (formRef.current) {
-              gsap.set(formRef.current.children, { opacity: 0, y: 60, scale: 0.95 })
-            }
-
-            const tl = gsap.timeline()
-            
-            if (titleRef.current) {
-              tl.to(
-                titleRef.current,
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  scale: 1,
-                  duration: 1.2, 
-                  ease: 'power3.out' 
-                }
-              )
-            }
-            
-            if (formRef.current) {
-              tl.to(
-                formRef.current.children,
-                {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  duration: 0.8,
-                  ease: 'back.out(1.2)',
-                  stagger: 0.08,
-                },
-                '-=0.6'
-              )
-            }
-          } else if (entry.isIntersecting && !isScrollingDown) {
-            // En remontant, garder les éléments visibles sans animation
-            if (titleRef.current) {
-              gsap.set(titleRef.current, { opacity: 1, y: 0, scale: 1 })
-            }
-            if (formRef.current) {
-              gsap.set(formRef.current.children, { opacity: 1, y: 0, scale: 1 })
-            }
-            if (stepsRef.current) {
-              gsap.set(stepsRef.current.children, { opacity: 1, y: 0, scale: 1 })
-            }
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    // Animation des étapes en boucle
-    if (stepsRef.current) {
-      const steps = stepsRef.current.children
-      
-      Array.from(steps).forEach((step, index) => {
-        const delay = index * 0.3
-        
-        // Animation d'entrée
-        gsap.fromTo(
-          step,
-          { opacity: 0, y: 50, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            delay: delay,
-          }
-        )
-
-        // Animation continue de pulsation pour les cercles
-        const circle = step.querySelector('.step-circle')
-        if (circle) {
-          gsap.to(circle, {
-            scale: 1.1,
-            duration: 2,
-            ease: 'sine.inOut',
-            repeat: -1,
-            yoyo: true,
-            delay: delay + 0.5,
-          })
-        }
-      })
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
-  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
