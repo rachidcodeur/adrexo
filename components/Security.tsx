@@ -17,7 +17,7 @@ const securityFeatures = [
   {
     icon: ShieldCheck,
     title: 'Protection Anti-Spam',
-    description: 'Système avancé de protection contre les spams et les tentatives d\'intrusion.',
+    description: 'Système avancé de protection contre les spams et les tentatives d\'intrusion. ',
   },
   {
     icon: FileCheck,
