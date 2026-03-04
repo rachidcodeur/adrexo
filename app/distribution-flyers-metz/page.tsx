@@ -191,7 +191,7 @@ export default function DistributionFlyersMetzPage() {
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card">
               <Image
                 src="/images/services%20villes/distri%20magazine%20municipal.webp"
-                alt="Distribution de brochures et catalogues dans les boîtes aux lettres messines"
+                alt="Distribution de brochures et catalogues en boîtes aux lettres messines"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
