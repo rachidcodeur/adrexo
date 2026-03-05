@@ -132,12 +132,12 @@ export default function Testimonials() {
           </button>
 
           {/* Dots Navigation */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-3 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-4 h-4 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-primary w-8'
                     : 'bg-gray-light hover:bg-primary-pastel'

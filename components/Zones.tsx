@@ -244,6 +244,13 @@ export default function Zones() {
                         >
                           Metz
                         </Link>
+                      ) : city === 'Mulhouse' ? (
+                        <Link
+                          href="/distribution-flyers-mulhouse"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Mulhouse
+                        </Link>
                       ) : city === 'Nancy' ? (
                         <Link
                           href="/distribution-flyers-nancy"
@@ -264,6 +271,27 @@ export default function Zones() {
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Rennes
+                        </Link>
+                      ) : city === 'Brest' ? (
+                        <Link
+                          href="/distribution-flyers-brest"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Brest
+                        </Link>
+                      ) : city === 'Quimper' ? (
+                        <Link
+                          href="/distribution-flyers-quimper"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Quimper
+                        </Link>
+                      ) : city === 'Lorient' ? (
+                        <Link
+                          href="/distribution-flyers-lorient"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Lorient
                         </Link>
                       ) : city === 'Le Havre' ? (
                         <Link
@@ -286,12 +314,47 @@ export default function Zones() {
                         >
                           Montpellier
                         </Link>
+                      ) : city === 'Nîmes' ? (
+                        <Link
+                          href="/distribution-flyers-nimes"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Nîmes
+                        </Link>
+                      ) : city === 'Perpignan' ? (
+                        <Link
+                          href="/distribution-flyers-perpignan"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Perpignan
+                        </Link>
+                      ) : city === 'Béziers' ? (
+                        <Link
+                          href="/distribution-flyers-beziers"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Béziers
+                        </Link>
                       ) : city === 'Pau' ? (
                         <Link
                           href="/distribution-flyers-pau"
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Pau
+                        </Link>
+                      ) : city === 'Colmar' ? (
+                        <Link
+                          href="/distribution-flyers-colmar"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Colmar
+                        </Link>
+                      ) : city === 'Albi' ? (
+                        <Link
+                          href="/distribution-flyers-albi"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Albi
                         </Link>
                       ) : (
                         city
