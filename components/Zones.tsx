@@ -55,7 +55,7 @@ export default function Zones() {
       
       <div className="section-container relative z-10">
         <h2 ref={titleRef} className="section-title">
-          Nos mairies d&apos;intervention
+          Nos communes d&apos;intervention
         </h2>
         
         <p className="text-body text-gray-dark mb-12 max-w-3xl">
@@ -293,6 +293,20 @@ export default function Zones() {
                         >
                           Lorient
                         </Link>
+                      ) : city === 'Vannes' ? (
+                        <Link
+                          href="/distribution-flyers-vannes"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Vannes
+                        </Link>
+                      ) : city === 'Saint-Brieuc' ? (
+                        <Link
+                          href="/distribution-flyers-saint-brieuc"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Saint-Brieuc
+                        </Link>
                       ) : city === 'Le Havre' ? (
                         <Link
                           href="/distribution-flyers-le-havre"
@@ -342,6 +356,34 @@ export default function Zones() {
                         >
                           Pau
                         </Link>
+                      ) : city === 'Limoges' ? (
+                        <Link
+                          href="/distribution-flyers-limoges"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Limoges
+                        </Link>
+                      ) : city === 'Poitiers' ? (
+                        <Link
+                          href="/distribution-flyers-poitiers"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Poitiers
+                        </Link>
+                      ) : city === 'La Rochelle' ? (
+                        <Link
+                          href="/distribution-flyers-la-rochelle"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          La Rochelle
+                        </Link>
+                      ) : city === 'Bayonne' ? (
+                        <Link
+                          href="/distribution-flyers-bayonne"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Bayonne
+                        </Link>
                       ) : city === 'Colmar' ? (
                         <Link
                           href="/distribution-flyers-colmar"
@@ -355,6 +397,48 @@ export default function Zones() {
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Albi
+                        </Link>
+                      ) : city === 'Orléans' ? (
+                        <Link
+                          href="/distribution-flyers-orleans"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Orléans
+                        </Link>
+                      ) : city === 'Tours' ? (
+                        <Link
+                          href="/distribution-flyers-tours"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Tours
+                        </Link>
+                      ) : city === 'Bourges' ? (
+                        <Link
+                          href="/distribution-flyers-bourges"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Bourges
+                        </Link>
+                      ) : city === 'Blois' ? (
+                        <Link
+                          href="/distribution-flyers-blois"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Blois
+                        </Link>
+                      ) : city === 'Châteauroux' ? (
+                        <Link
+                          href="/distribution-flyers-chateauroux"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Châteauroux
+                        </Link>
+                      ) : city === 'Chartres' ? (
+                        <Link
+                          href="/distribution-flyers-chartres"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Chartres
                         </Link>
                       ) : (
                         city
