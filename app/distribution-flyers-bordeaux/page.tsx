@@ -26,7 +26,7 @@ export default function DistributionFlyersBordeauxPage() {
               {/* Image juste après le titre en mobile */}
               <div className="mb-6 rounded-[18px] overflow-hidden shadow-card lg:hidden">
                 <Image
-                  src="/images/villes/bordeaux.avif"
+                  src="/images/villes/bordeaux.webp"
                   alt="Campagne de distribution de flyers dans les rues bordelaises"
                   width={800}
                   height={600}

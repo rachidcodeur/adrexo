@@ -175,7 +175,7 @@ export default function DistributionFlyersLillePage() {
             </div>
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card">
               <Image
-                src="/images/distri%20journaux%20adrexo.webp"
+                src="/images/services%20villes/distri%20magazine%20municipal.webp"
                 alt="Distribution de supports de communication et magazines à Lille"
                 width={800}
                 height={600}
@@ -196,7 +196,7 @@ export default function DistributionFlyersLillePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-1 lg:order-2">
               <Image
-                src="/images/distri%20tract%20municipal.webp"
+                src="/images/services%20villes/distribution%20tract%20electoral.webp"
                 alt="Distribution de tracts électoraux à Lille"
                 width={800}
                 height={600}
