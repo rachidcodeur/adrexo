@@ -50,7 +50,7 @@ export default function DistributionFlyersBordeauxPage() {
             {/* Colonne image uniquement pour desktop */}
             <div className="relative w-full rounded-[18px] overflow-hidden shadow-card order-2 lg:order-1 hidden lg:block">
               <Image
-                src="/images/villes/bordeaux.avif"
+                src="/images/villes/bordeaux.webp"
                 alt="Vue de Bordeaux utilisée pour illustrer la distribution de flyers"
                 width={800}
                 height={600}

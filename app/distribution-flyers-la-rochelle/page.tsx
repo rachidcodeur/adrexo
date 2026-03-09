@@ -94,14 +94,8 @@ export default function DistributionFlyersLaRochellePage() {
               <p className="text-body text-gray-dark mb-6">
                 Nous construisons avec vous des tournées adaptées au territoire rochelais et aux communes voisines de
                 Charente-Maritime, afin d&apos;optimiser la couverture de vos campagnes. Cette approche terrain peut être
-                complétée par des opérations de{' '}
-                <Link
-                  href="/street-marketing"
-                  className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
-                >
-                  communication de proximité en centre-ville
-                </Link>{' '}
-                pour renforcer votre visibilité sur les principaux flux piétons du 17.
+                complétée par des opérations de communication de proximité en centre-ville pour renforcer votre
+                visibilité sur les principaux flux piétons du 17.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis
@@ -277,14 +271,8 @@ export default function DistributionFlyersLaRochellePage() {
               </p>
               <p className="text-body text-gray-dark mb-6">
                 Nos équipes de distributeurs connaissent les principaux quartiers rochelais, les zones pavillonnaires et les
-                secteurs à forte densité. En combinant ces diffusions de tracts avec nos actions de{' '}
-                <Link
-                  href="/street-marketing"
-                  className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
-                >
-                  communication de proximité sur le terrain
-                </Link>
-                , vous renforcez la présence de votre message sur tout le bassin de vie rochelais.
+                secteurs à forte densité. En combinant ces diffusions de tracts avec d&apos;autres actions de communication de
+                proximité sur le terrain, vous renforcez la présence de votre message sur tout le bassin de vie rochelais.
               </p>
               <Link href="/#contact" className="btn-primary inline-flex items-center justify-center hover:text-white">
                 Demander un devis
@@ -322,15 +310,8 @@ export default function DistributionFlyersLaRochellePage() {
             <p className="text-body text-gray-dark mb-6">
               Flyers, dépliants, mailings, plaquettes commerciales, catalogues, brochures ou cartes de visite permettent de
               mettre en avant vos offres, votre image de marque et vos points de vente dans le 17. Intégrés à une stratégie
-              de{' '}
-              <Link
-                href="/street-marketing"
-                className="text-primary font-semibold hover:text-primary-dark underline underline-offset-2 transition-colors"
-              >
-                communication de proximité
-              </Link>
-              , ces supports imprimés complètent vos actions sur le web et contribuent à générer du trafic vers vos lieux
-              d&apos;accueil.
+              de communication de proximité, ces supports imprimés complètent vos actions sur le web et contribuent à générer
+              du trafic vers vos lieux d&apos;accueil.
             </p>
             <p className="text-body text-gray-dark mb-6">
               Grâce à une connaissance fine des quartiers rochelais et des communes environnantes, nous définissons des

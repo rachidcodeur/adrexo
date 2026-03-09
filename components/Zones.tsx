@@ -223,6 +223,34 @@ export default function Zones() {
                         >
                           Angers
                         </Link>
+                      ) : city === 'Le Mans' ? (
+                        <Link
+                          href="/distribution-flyers-le-mans"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Le Mans
+                        </Link>
+                      ) : city === 'Saint-Nazaire' ? (
+                        <Link
+                          href="/distribution-flyers-saint-nazaire"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Saint-Nazaire
+                        </Link>
+                      ) : city === 'Laval' ? (
+                        <Link
+                          href="/distribution-flyers-laval"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Laval
+                        </Link>
+                      ) : city === 'Cholet' ? (
+                        <Link
+                          href="/distribution-flyers-cholet"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Cholet
+                        </Link>
                       ) : city === 'Dijon' ? (
                         <Link
                           href="/distribution-flyers-dijon"
@@ -313,6 +341,41 @@ export default function Zones() {
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Le Havre
+                        </Link>
+                      ) : city === 'Rouen' ? (
+                        <Link
+                          href="/distribution-flyers-rouen"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Rouen
+                        </Link>
+                      ) : city === 'Caen' ? (
+                        <Link
+                          href="/distribution-flyers-caen"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Caen
+                        </Link>
+                      ) : city === 'Cherbourg-en-Cotentin' ? (
+                        <Link
+                          href="/distribution-flyers-cherbourg-en-cotentin"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Cherbourg-en-Cotentin
+                        </Link>
+                      ) : city === 'Évreux' ? (
+                        <Link
+                          href="/distribution-flyers-evreux"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Évreux
+                        </Link>
+                      ) : city === 'Dieppe' ? (
+                        <Link
+                          href="/distribution-flyers-dieppe"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Dieppe
                         </Link>
                       ) : city === 'Lille' ? (
                         <Link
