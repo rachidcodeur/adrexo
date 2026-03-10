@@ -5,18 +5,198 @@ import Link from 'next/link'
 import { MapPin } from 'lucide-react'
 
 const regions = [
-  { name: 'Île-de-France', cities: ['Paris', 'Boulogne-Billancourt', 'Saint-Denis', 'Argenteuil', 'Montreuil', 'Nanterre'] },
-  { name: 'Auvergne-Rhône-Alpes', cities: ['Lyon', 'Saint-Étienne', 'Grenoble', 'Clermont-Ferrand', 'Annecy', 'Valence'] },
-  { name: 'Grand Est', cities: ['Strasbourg', 'Metz', 'Nancy', 'Mulhouse', 'Reims', 'Colmar'] },
-  { name: 'Nouvelle-Aquitaine', cities: ['Bordeaux', 'Pau', 'Limoges', 'Poitiers', 'La Rochelle', 'Bayonne'] },
-  { name: 'Pays de la Loire', cities: ['Nantes', 'Angers', 'Le Mans', 'Saint-Nazaire', 'Laval', 'Cholet'] },
-  { name: 'Normandie', cities: ['Le Havre', 'Rouen', 'Caen', 'Cherbourg-en-Cotentin', 'Évreux', 'Dieppe'] },
-  { name: 'Occitanie', cities: ['Toulouse', 'Montpellier', 'Nîmes', 'Perpignan', 'Béziers', 'Albi'] },
-  { name: 'Bretagne', cities: ['Rennes', 'Brest', 'Quimper', 'Lorient', 'Vannes', 'Saint-Brieuc'] },
-  { name: 'Centre-Val de Loire', cities: ['Orléans', 'Tours', 'Bourges', 'Blois', 'Châteauroux', 'Chartres'] },
-  { name: "Provence-Alpes-Côte d'Azur", cities: ['Marseille', 'Aix-en-Provence', 'Nice', 'Cannes', 'Toulon', 'Avignon'] },
-  { name: 'Hauts-de-France', cities: ['Lille', 'Amiens', 'Roubaix', 'Tourcoing', 'Dunkerque', 'Calais'] },
-  { name: 'Bourgogne-Franche-Comté', cities: ['Dijon', 'Besançon', 'Chalon-sur-Saône', 'Auxerre', 'Mâcon', 'Belfort'] },
+  {
+    name: 'Île-de-France',
+    cities: [
+      'Paris',
+      'Boulogne-Billancourt',
+      'Saint-Denis',
+      'Argenteuil',
+      'Montreuil',
+      'Nanterre',
+      'Versailles',
+      'Créteil',
+      'Aulnay-sous-Bois',
+      'Rueil-Malmaison',
+      'Vitry-sur-Seine',
+    ],
+  },
+  {
+    name: 'Auvergne-Rhône-Alpes',
+    cities: [
+      'Lyon',
+      'Saint-Étienne',
+      'Grenoble',
+      'Clermont-Ferrand',
+      'Annecy',
+      'Valence',
+      'Chambéry',
+      'Villeurbanne',
+      'Vénissieux',
+      'Caluire-et-Cuire',
+      'Roanne',
+    ],
+  },
+  {
+    name: 'Grand Est',
+    cities: [
+      'Strasbourg',
+      'Metz',
+      'Nancy',
+      'Mulhouse',
+      'Reims',
+      'Colmar',
+      'Troyes',
+      'Charleville-Mézières',
+      'Épinal',
+      'Châlons-en-Champagne',
+      'Thionville',
+    ],
+  },
+  {
+    name: 'Nouvelle-Aquitaine',
+    cities: [
+      'Bordeaux',
+      'Pau',
+      'Limoges',
+      'Poitiers',
+      'La Rochelle',
+      'Bayonne',
+      'Angoulême',
+      'Niort',
+      'Périgueux',
+      'Brive-la-Gaillarde',
+      'Agen',
+    ],
+  },
+  {
+    name: 'Pays de la Loire',
+    cities: [
+      'Nantes',
+      'Angers',
+      'Le Mans',
+      'Saint-Nazaire',
+      'Laval',
+      'Cholet',
+      'La Roche-sur-Yon',
+      'Saint-Herblain',
+      'Rezé',
+      'Saumur',
+      "Les Sables-d'Olonne",
+    ],
+  },
+  {
+    name: 'Normandie',
+    cities: [
+      'Le Havre',
+      'Rouen',
+      'Caen',
+      'Cherbourg-en-Cotentin',
+      'Évreux',
+      'Dieppe',
+      'Alençon',
+      'Lisieux',
+      'Saint-Lô',
+      'Vire Normandie',
+      'Fécamp',
+    ],
+  },
+  {
+    name: 'Occitanie',
+    cities: [
+      'Toulouse',
+      'Montpellier',
+      'Nîmes',
+      'Perpignan',
+      'Béziers',
+      'Albi',
+      'Narbonne',
+      'Carcassonne',
+      'Montauban',
+      'Tarbes',
+      'Sète',
+    ],
+  },
+  {
+    name: 'Bretagne',
+    cities: [
+      'Rennes',
+      'Brest',
+      'Quimper',
+      'Lorient',
+      'Vannes',
+      'Saint-Brieuc',
+      'Saint-Malo',
+      'Lanester',
+      'Fougères',
+      'Morlaix',
+      'Concarneau',
+    ],
+  },
+  {
+    name: 'Centre-Val de Loire',
+    cities: [
+      'Orléans',
+      'Tours',
+      'Bourges',
+      'Blois',
+      'Châteauroux',
+      'Chartres',
+      'Dreux',
+      'Montargis',
+      'Vierzon',
+      'Romorantin-Lanthenay',
+      'Vendôme',
+    ],
+  },
+  {
+    name: "Provence-Alpes-Côte d'Azur",
+    cities: [
+      'Marseille',
+      'Aix-en-Provence',
+      'Nice',
+      'Cannes',
+      'Toulon',
+      'Avignon',
+      'Antibes',
+      'Fréjus',
+      'Hyères',
+      'Grasse',
+      'Arles',
+    ],
+  },
+  {
+    name: 'Hauts-de-France',
+    cities: [
+      'Lille',
+      'Amiens',
+      'Roubaix',
+      'Tourcoing',
+      'Dunkerque',
+      'Calais',
+      'Arras',
+      'Valenciennes',
+      'Boulogne-sur-Mer',
+      'Saint-Quentin',
+      'Beauvais',
+    ],
+  },
+  {
+    name: 'Bourgogne-Franche-Comté',
+    cities: [
+      'Dijon',
+      'Besançon',
+      'Chalon-sur-Saône',
+      'Auxerre',
+      'Mâcon',
+      'Belfort',
+      'Nevers',
+      'Montbéliard',
+      'Sens',
+      'Dole',
+      'Le Creusot',
+    ],
+  },
 ]
 
 export default function Zones() {
@@ -202,6 +382,20 @@ export default function Zones() {
                         >
                           Nice
                         </Link>
+                      ) : city === 'Cannes' ? (
+                        <Link
+                          href="/distribution-flyers-cannes"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Cannes
+                        </Link>
+                      ) : city === 'Avignon' ? (
+                        <Link
+                          href="/distribution-flyers-avignon"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Avignon
+                        </Link>
                       ) : city === 'Toulon' ? (
                         <Link
                           href="/distribution-flyers-toulon"
@@ -257,6 +451,34 @@ export default function Zones() {
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Dijon
+                        </Link>
+                      ) : city === 'Besançon' ? (
+                        <Link
+                          href="/distribution-flyers-besancon"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Besançon
+                        </Link>
+                      ) : city === 'Chalon-sur-Saône' ? (
+                        <Link
+                          href="/distribution-flyers-chalon-sur-saone"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Chalon-sur-Saône
+                        </Link>
+                      ) : city === 'Auxerre' ? (
+                        <Link
+                          href="/distribution-flyers-auxerre"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Auxerre
+                        </Link>
+                      ) : city === 'Mâcon' ? (
+                        <Link
+                          href="/distribution-flyers-macon"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Mâcon
                         </Link>
                       ) : city === 'Strasbourg' ? (
                         <Link
@@ -383,6 +605,41 @@ export default function Zones() {
                           className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
                         >
                           Lille
+                        </Link>
+                      ) : city === 'Amiens' ? (
+                        <Link
+                          href="/distribution-flyers-amiens"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Amiens
+                        </Link>
+                      ) : city === 'Roubaix' ? (
+                        <Link
+                          href="/distribution-flyers-roubaix"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Roubaix
+                        </Link>
+                      ) : city === 'Tourcoing' ? (
+                        <Link
+                          href="/distribution-flyers-tourcoing"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Tourcoing
+                        </Link>
+                      ) : city === 'Dunkerque' ? (
+                        <Link
+                          href="/distribution-flyers-dunkerque"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Dunkerque
+                        </Link>
+                      ) : city === 'Calais' ? (
+                        <Link
+                          href="/distribution-flyers-calais"
+                          className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark transition-colors"
+                        >
+                          Calais
                         </Link>
                       ) : city === 'Montpellier' ? (
                         <Link
