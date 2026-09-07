@@ -2,21 +2,24 @@
 
 import { useState, useRef } from 'react'
 import { Send, Shield, FileText, Search, Phone } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+
+const EMPTY_FORM = {
+  nom: '',
+  telephone: '',
+  email: '',
+  sujet: '',
+  adresse: '',
+  cp: '',
+  ville: '',
+  message: '',
+}
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    nom: '',
-    telephone: '',
-    email: '',
-    sujet: '',
-    ville: '',
-    message: '',
-  })
+  const [formData, setFormData] = useState(EMPTY_FORM)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState<string>('')
-  
+
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -25,7 +28,7 @@ export default function ContactForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
     const checked = (e.target as HTMLInputElement).checked
-    
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
@@ -39,102 +42,31 @@ export default function ContactForm() {
     setErrorMessage('')
 
     try {
-      // Vérifier que les variables d'environnement sont définies
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-        throw new Error('Supabase n\'est pas configuré. Vérifiez que NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY sont définis dans votre fichier .env.local et redémarrez le serveur.')
-      }
-
-      // Logs de débogage
-      console.log('🔍 Debug Supabase:', {
-        url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + '...',
-        hasKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-        keyLength: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.length,
-        keyStart: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...'
+      // Le lead part vers l'API HomeService (et l'archive Supabase) via notre route serveur.
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          page: typeof window !== 'undefined' ? window.location.pathname : '',
+        }),
       })
 
-      // Vérifier que le client Supabase est correctement configuré
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-        throw new Error('Le client Supabase n\'est pas correctement configuré. Vérifiez vos variables d\'environnement dans .env.local et redémarrez le serveur.')
-      }
+      const result = await response.json().catch(() => null)
 
-      // Créer un nouveau client avec les variables actuelles pour garantir qu'elles sont à jour
-      const { createClient: createSupabaseClient } = await import('@supabase/supabase-js')
-      const currentSupabase = createSupabaseClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-        {
-          auth: {
-            persistSession: false,
-            autoRefreshToken: false,
-          },
-        }
-      )
-
-      const { data, error } = await currentSupabase
-        .from('adrexo_contact_submissions')
-        .insert([
-          {
-            nom: formData.nom,
-            telephone: formData.telephone,
-            email: formData.email,
-            sujet: formData.sujet,
-            ville: formData.ville,
-            message: formData.message,
-          },
-        ])
-        .select()
-
-      if (error) {
-        console.error('Error submitting form:', error)
-        console.error('Error details:', {
-          code: error.code,
-          message: error.message,
-          details: error.details,
-          hint: error.hint
-        })
-        
-        // Messages d'erreur plus explicites
-        let errorMsg = 'Une erreur est survenue lors de l\'envoi.'
-        
-        if (error.code === 'PGRST116') {
-          errorMsg = 'La table n\'existe pas dans la base de données. Vérifiez que la migration SQL a été exécutée.'
-        } else if (error.code === '42501' || error.message?.includes('row-level security') || error.message?.includes('RLS')) {
-          errorMsg = 'Permission refusée par la politique RLS. Exécutez le script fix_rls_DEFINITIF.sql dans Supabase. Si l\'erreur persiste, vérifiez aussi votre clé API (erreur 401).'
-        } else if (error.code === 'PGRST301' || error.message?.includes('JWT') || error.message?.includes('401')) {
-          errorMsg = 'Erreur d\'authentification (401). Vérifiez que vous utilisez NEXT_PUBLIC_SUPABASE_ANON_KEY (clé "anon public" dans Supabase, pas la service_role).'
-        } else if (error.message) {
-          errorMsg = `Erreur: ${error.message}`
-          if (error.hint) {
-            errorMsg += ` (${error.hint})`
-          }
-        }
-        
-        setErrorMessage(errorMsg)
+      if (!response.ok) {
+        setErrorMessage(result?.error || 'Une erreur est survenue lors de l\'envoi.')
         setSubmitStatus('error')
         return
       }
 
       setSubmitStatus('success')
-      setFormData({
-        nom: '',
-        telephone: '',
-        email: '',
-        sujet: '',
-        ville: '',
-        message: '',
-      })
+      setFormData(EMPTY_FORM)
     } catch (error: any) {
       console.error('Error submitting form:', error)
-      
-      let errorMsg = 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.'
-      
-      if (error?.message) {
-        errorMsg = error.message
-      } else if (typeof error === 'string') {
-        errorMsg = error
-      }
-      
-      setErrorMessage(errorMsg)
+      setErrorMessage(
+        'Envoi impossible. Vérifiez votre connexion puis réessayez, ou contactez-nous directement.'
+      )
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -219,6 +151,41 @@ export default function ContactForm() {
               />
             </div>
             
+            <div>
+              <label htmlFor="adresse" className="block text-body-sm text-gray-dark mb-2">
+                Adresse
+              </label>
+              <input
+                type="text"
+                id="adresse"
+                name="adresse"
+                value={formData.adresse}
+                onChange={handleChange}
+                className="input-field w-full bg-gray-50"
+                placeholder="N° et rue (facultatif)"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="cp" className="block text-body-sm text-gray-dark mb-2">
+                Code postal *
+              </label>
+              <input
+                type="text"
+                id="cp"
+                name="cp"
+                required
+                inputMode="numeric"
+                pattern="[0-9]{5}"
+                maxLength={5}
+                title="5 chiffres, ex : 69003"
+                value={formData.cp}
+                onChange={handleChange}
+                className="input-field w-full bg-gray-50"
+                placeholder="69003"
+              />
+            </div>
+
             <div className="md:col-span-2">
               <label htmlFor="ville" className="block text-body-sm text-gray-dark mb-2">
                 Ville de distribution *
