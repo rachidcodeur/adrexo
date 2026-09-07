@@ -8,10 +8,10 @@ export const HOMESERVICE_ENDPOINT =
   'https://europe-west1-app-home-service.cloudfunctions.net/receiveLead'
 
 /** Slug d'activité de ce site (liste complète : https://homeservice-pro.fr/admin/activites) */
-export const HOMESERVICE_ACTIVITE = process.env.HOMESERVICE_ACTIVITE || 'distribution'
+export const HOMESERVICE_ACTIVITE = process.env.HOMESERVICE_ACTIVITE || 'distribution-de-flyers'
 
-/** Valeur imposée par Reda pour distinguer les sources de leads. Ne pas remplacer par le domaine. */
-export const HOMESERVICE_ORIGINE = process.env.HOMESERVICE_ORIGINE || 'site-formulaire-rachid'
+/** Source du lead côté HomeService : nom du site, demandé par le client. */
+export const HOMESERVICE_ORIGINE = process.env.HOMESERVICE_ORIGINE || 'Adrexo'
 
 export type HomeServicePayload = {
   nom: string
