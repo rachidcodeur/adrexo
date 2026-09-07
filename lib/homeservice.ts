@@ -7,8 +7,8 @@ export const HOMESERVICE_ENDPOINT =
   process.env.HOMESERVICE_LEAD_ENDPOINT ||
   'https://europe-west1-app-home-service.cloudfunctions.net/receiveLead'
 
-/** Slug d'activité de ce site (liste complète : https://homeservice-pro.fr/admin/activites) */
-export const HOMESERVICE_ACTIVITE = process.env.HOMESERVICE_ACTIVITE || 'distribution-de-flyers'
+/** Activité de ce site, libellé tel qu'affiché sur https://homeservice-pro.fr/admin/activites */
+export const HOMESERVICE_ACTIVITE = process.env.HOMESERVICE_ACTIVITE || 'Distribution de flyers'
 
 /** Source du lead côté HomeService : nom du site, demandé par le client. */
 export const HOMESERVICE_ORIGINE = process.env.HOMESERVICE_ORIGINE || 'Adrexo'
