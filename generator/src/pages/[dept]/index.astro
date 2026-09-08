@@ -1,0 +1,81 @@
+---
+/** PAGE DÉPARTEMENT — 100 pages. Destination des campagnes départementales. */
+import Base from '../../layouts/Base.astro'
+import Formulaire from '../../components/Formulaire.astro'
+import { departements, villesDuDept, urlDept } from '../../lib/dataset.mjs'
+import { construirePageDept } from '../../lib/render.mjs'
+import { nombre } from '../../lib/geo.mjs'
+import { SITE } from '../../site.config.mjs'
+
+export function getStaticPaths() {
+  return departements.map((d) => ({ params: { dept: d.slug }, props: { d } }))
+}
+
+const { d } = Astro.props
+const page = construirePageDept(d)
+const communes = villesDuDept(d.slug)
+const canonical = urlDept(d)
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `${SITE.activite.principal} ${page.data.deptPrep}`,
+    serviceType: SITE.activite.principal,
+    description: page.meta.description,
+    provider: { '@type': 'Organization', name: SITE.nom, url: SITE.baseUrl },
+    areaServed: { '@type': 'AdministrativeArea', name: d.nom },
+    url: new URL(canonical, SITE.baseUrl).href,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE.baseUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: d.nom, item: new URL(canonical, SITE.baseUrl).href },
+    ],
+  },
+]
+---
+<Base titre={page.meta.titre} description={page.meta.description} canonical={canonical}
+      jsonLd={jsonLd} filAriane={[{ nom: 'Accueil', url: '/' }, { nom: d.nom }]}>
+
+  <section class="hero">
+    <div class="wrap grille">
+      <div>
+        <h1>{page.meta.h1}</h1>
+        {page.sections[0].paragraphes.map((p) => <p>{p}</p>)}
+        <div class="chiffres">
+          <div class="chiffre"><b>{nombre(d.nbVilles)}</b><span>communes couvertes</span></div>
+          <div class="chiffre"><b>{nombre(d.population)}</b><span>habitants</span></div>
+          <div class="chiffre"><b>{d.code}</b><span>département</span></div>
+          <div class="chiffre"><b>{d.region}</b><span>région</span></div>
+        </div>
+      </div>
+      <Formulaire contexte={`dept:${d.slug}`} />
+    </div>
+  </section>
+
+  <div class="wrap">
+    {page.sections.slice(1).map((s) => (
+      <section><h2>{s.titre}</h2>{s.paragraphes.map((p) => <p>{p}</p>)}</section>
+    ))}
+
+    <section>
+      <h2>Les {nombre(d.nbVilles)} communes couvertes {page.data.deptPrep}</h2>
+      <p>
+        Chaque commune dispose de sa page dédiée, avec le détail de l’habitat local
+        et du volume de boîtes aux lettres à couvrir.
+      </p>
+      <ul class="communes">
+        {communes.map((v) => (
+          <li>
+            <a href={`/${v.deptSlug}/${v.slug}/`}>
+              {v.nom}<small>{v.codePostal} · {nombre(v.population)} hab.</small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Base>

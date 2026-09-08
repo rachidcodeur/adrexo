@@ -1,0 +1,23 @@
+---
+/** Index complet des départements — lié depuis le pied de page de chaque page. */
+import Base from '../../layouts/Base.astro'
+import { departements, villes } from '../../lib/dataset.mjs'
+import { nombre } from '../../lib/geo.mjs'
+import { SITE } from '../../site.config.mjs'
+---
+<Base titre={`Tous les départements couverts | ${SITE.nom}`}
+      description={`Liste des ${departements.length} départements et ${nombre(villes.length)} communes couverts pour la distribution en boîtes aux lettres.`}
+      canonical="/departements/" filAriane={[{ nom: 'Accueil', url: '/' }, { nom: 'Départements' }]}>
+  <div class="wrap">
+    <h1>Tous les départements couverts</h1>
+    <p>
+      {departements.length} départements et {nombre(villes.length)} communes disposent
+      d’une page dédiée.
+    </p>
+    <ul class="communes">
+      {departements.map((d) => (
+        <li><a href={`/${d.slug}/`}>{d.nom}<small>{d.code} · {nombre(d.nbVilles)} communes</small></a></li>
+      ))}
+    </ul>
+  </div>
+</Base>

@@ -1,0 +1,76 @@
+---
+/** ACCUEIL NATIONAL — destination des campagnes génériques. */
+import Base from '../layouts/Base.astro'
+import Formulaire from '../components/Formulaire.astro'
+import { departements, villes } from '../lib/dataset.mjs'
+import { nombre } from '../lib/geo.mjs'
+import { SITE } from '../site.config.mjs'
+
+const parRegion = new Map()
+for (const d of departements) {
+  if (!parRegion.has(d.region)) parRegion.set(d.region, [])
+  parRegion.get(d.region).push(d)
+}
+const regions = [...parRegion.entries()].sort((a, b) => a[0].localeCompare(b[0], 'fr'))
+const popTotale = departements.reduce((s, d) => s + d.population, 0)
+
+const jsonLd = [{
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: SITE.activite.principal,
+  serviceType: SITE.activite.principal,
+  provider: { '@type': 'Organization', name: SITE.nom, url: SITE.baseUrl },
+  areaServed: { '@type': 'Country', name: 'France' },
+  url: SITE.baseUrl + '/',
+}]
+---
+<Base titre={`Distribution en boîtes aux lettres partout en France | ${SITE.nom}`}
+      description={`Distribution de flyers, prospectus et catalogues en boîtes aux lettres dans ${nombre(villes.length)} communes et ${departements.length} départements. Ciblage par secteur, tournées suivies, devis sans engagement.`}
+      canonical="/" jsonLd={jsonLd}>
+
+  <section class="hero">
+    <div class="wrap grille">
+      <div>
+        <h1>Distribution en boîtes aux lettres partout en France</h1>
+        <p>
+          {SITE.nom} organise la diffusion de vos imprimés publicitaires dans
+          {' '}{nombre(villes.length)} communes réparties sur {departements.length} départements.
+          Flyers, prospectus, catalogues, journaux municipaux : vos supports sont déposés
+          chez l’habitant, secteur par secteur.
+        </p>
+        <p>
+          Le ciblage descend au niveau du quartier et du groupe de rues, ce qui évite de
+          payer pour des foyers hors de votre zone de clientèle. Chaque tournée est
+          planifiée à l’avance, suivie, puis restituée dans un compte rendu de couverture.
+        </p>
+        <div class="chiffres">
+          <div class="chiffre"><b>{nombre(villes.length)}</b><span>communes couvertes</span></div>
+          <div class="chiffre"><b>{departements.length}</b><span>départements</span></div>
+          <div class="chiffre"><b>{nombre(popTotale)}</b><span>habitants desservis</span></div>
+          <div class="chiffre"><b>24 h</b><span>délai de réponse</span></div>
+        </div>
+      </div>
+      <Formulaire contexte="national" />
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section>
+      <h2>Choisir votre département</h2>
+      <p>
+        Chaque département dispose de sa page, et chaque commune de la sienne, avec le
+        détail de l’habitat local et le volume de boîtes aux lettres à couvrir.
+      </p>
+      {regions.map(([region, depts]) => (
+        <>
+          <h3>{region}</h3>
+          <ul class="communes">
+            {depts.map((d) => (
+              <li><a href={`/${d.slug}/`}>{d.nom}<small>{d.code} · {nombre(d.nbVilles)} communes</small></a></li>
+            ))}
+          </ul>
+        </>
+      ))}
+    </section>
+  </div>
+</Base>

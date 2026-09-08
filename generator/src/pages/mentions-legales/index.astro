@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro'
+import { SITE } from '../../site.config.mjs'
+---
+<Base titre={`Mentions légales | ${SITE.nom}`}
+      description="Mentions légales du site : éditeur, hébergeur, propriété intellectuelle."
+      canonical="/mentions-legales/"
+      filAriane={[{ nom: 'Accueil', url: '/' }, { nom: 'Mentions légales' }]}>
+  <div class="wrap" style="max-width:760px">
+    <h1>Mentions légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <p>
+      Le présent site est édité par {SITE.legal.editeur}, immatriculée sous le
+      SIRET {SITE.legal.siret}. {SITE.nom} est une marque de {SITE.legal.editeur}.
+    </p>
+    <p>Contact : {SITE.contact.telephoneAffiche}</p>
+
+    <h2>Nature du service</h2>
+    <p>
+      {SITE.nom} propose des prestations de {SITE.activite.principal} sur l’ensemble
+      du territoire français. Les pages consacrées à une commune décrivent la zone
+      d’intervention couverte et ne signifient pas la présence d’un établissement
+      dans cette commune.
+    </p>
+
+    <h2>Hébergement</h2>
+    <p>
+      Le site est hébergé par Cloudflare, Inc., 101 Townsend St, San Francisco,
+      CA 94107, États-Unis.
+    </p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>
+      L’ensemble des contenus de ce site (textes, mise en page, éléments graphiques)
+      est protégé par le droit d’auteur. Toute reproduction, même partielle, sans
+      autorisation écrite préalable est interdite.
+    </p>
+
+    <h2>Données personnelles</h2>
+    <p>
+      Le traitement des données transmises via le formulaire est décrit dans la
+      <a href={SITE.urls.confidentialite}>politique de confidentialité</a>.
+    </p>
+  </div>
+</Base>

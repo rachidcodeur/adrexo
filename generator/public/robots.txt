@@ -1,0 +1,25 @@
+# Aucun robot publicitaire ni robot d'indexation n'est bloqué.
+# Un blocage de AdsBot-Google ou AdIdxBot entraîne le refus des annonces
+# pour « destination non fonctionnelle » (bloc 2 du CDC).
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: AdIdxBot
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /merci/
+Disallow: /api/
+
+Sitemap: https://adrexo.net/sitemap.xml

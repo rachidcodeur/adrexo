@@ -1,0 +1,145 @@
+---
+/**
+ * FORMULAIRE DE CAPTATION — bloc 6 du CDC.
+ *
+ * Placé en haut de page. Envoie vers /api/lead (Cloudflare Pages Function),
+ * qui ajoute le secret partagé côté serveur avant d'appeler receiveLead.
+ * Le secret n'est JAMAIS présent dans le HTML servi au visiteur.
+ */
+import { SITE } from '../site.config.mjs'
+const { ville = '', codePostal = '', contexte = 'national' } = Astro.props
+---
+<div class="form-carte">
+  <h2>Demander un devis</h2>
+  <p class="sous">
+    Réponse sous 24 h ouvrées. Sans engagement.
+  </p>
+
+  <form id="form-lead" novalidate>
+    <p class="err" id="form-err" hidden></p>
+
+    <label for="f-nom">Nom et prénom</label>
+    <input id="f-nom" name="nom" type="text" autocomplete="name" required />
+
+    <label for="f-tel">Téléphone</label>
+    <input id="f-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel"
+           pattern="[0-9 .+()-]{9,20}" required />
+
+    <div class="duo">
+      <div>
+        <label for="f-cp">Code postal</label>
+        <input id="f-cp" name="code_postal" type="text" inputmode="numeric"
+               pattern="[0-9]{5}" maxlength="5" value={codePostal} required />
+      </div>
+      <div>
+        <label for="f-ville">Ville</label>
+        <input id="f-ville" name="ville" type="text" value={ville} required />
+      </div>
+    </div>
+
+    <label for="f-type">Type de distribution</label>
+    <select id="f-type" name="type_travaux" required>
+      <option value="">Choisir…</option>
+      {SITE.contact.typesTravaux.map((x) => <option value={x}>{x}</option>)}
+    </select>
+
+    <label for="f-delai">Délai souhaité</label>
+    <select id="f-delai" name="delai" required>
+      <option value="">Choisir…</option>
+      {SITE.contact.delais.map((x) => <option value={x}>{x}</option>)}
+    </select>
+
+    <label for="f-msg">Votre projet</label>
+    <textarea id="f-msg" name="message" placeholder="Nombre d’exemplaires, secteurs visés, dates…"></textarea>
+
+    {/* Honeypot : invisible pour l'humain, rempli par les robots. */}
+    <div class="pot" aria-hidden="true">
+      <label for="f-site">Ne pas remplir</label>
+      <input id="f-site" name="site_web" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <label class="rgpd">
+      <input type="checkbox" name="rgpd" required />
+      <span>
+        J’accepte que mes données soient utilisées pour être recontacté au sujet de ma
+        demande. <a href={SITE.urls.confidentialite}>Politique de confidentialité</a>.
+      </span>
+    </label>
+
+    {/* Champs cachés de traçabilité publicitaire — CDC bloc 7. */}
+    <input type="hidden" name="gclid" /><input type="hidden" name="msclkid" />
+    <input type="hidden" name="fbclid" /><input type="hidden" name="utm_source" />
+    <input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" />
+    <input type="hidden" name="utm_term" /><input type="hidden" name="utm_content" />
+    <input type="hidden" name="url_arrivee" /><input type="hidden" name="page_envoi" />
+    <input type="hidden" name="contexte" value={contexte} />
+    <input type="hidden" name="slug_activite" value={SITE.lead.slugActivite} />
+    <input type="hidden" name="origine" value={SITE.lead.origine} />
+
+    <button type="submit" id="form-btn">Recevoir mon devis</button>
+  </form>
+</div>
+
+<script is:inline define:vars={{ URL_MERCI: SITE.urls.merci, ADS: SITE.tracking.googleAdsId, LABEL: SITE.tracking.googleAdsLabel }}>
+;(function () {
+  var form = document.getElementById('form-lead')
+  if (!form) return
+  var btn = document.getElementById('form-btn')
+  var err = document.getElementById('form-err')
+
+  // --- Capture des identifiants publicitaires --------------------------------
+  // Ils n'arrivent que sur la page d'atterrissage : on les mémorise pour la
+  // durée de la session, sinon ils sont perdus dès la première navigation.
+  var CLES = ['gclid','msclkid','fbclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content']
+  var params = new URLSearchParams(location.search)
+  CLES.forEach(function (k) {
+    var v = params.get(k)
+    try {
+      if (v) { sessionStorage.setItem('trk_' + k, v); }
+      var stocke = sessionStorage.getItem('trk_' + k)
+      if (stocke && form[k]) form[k].value = stocke
+    } catch (e) { if (v && form[k]) form[k].value = v }
+  })
+  try {
+    if (!sessionStorage.getItem('trk_url_arrivee')) sessionStorage.setItem('trk_url_arrivee', location.href)
+    form.url_arrivee.value = sessionStorage.getItem('trk_url_arrivee') || location.href
+  } catch (e) { form.url_arrivee.value = location.href }
+  form.page_envoi.value = location.href
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault()
+    err.hidden = true
+
+    if (!form.checkValidity()) { form.reportValidity(); return }
+    // Le honeypot rempli : on simule un succès sans rien envoyer.
+    if (form.site_web.value) { location.href = URL_MERCI; return }
+
+    btn.disabled = true
+    btn.textContent = 'Envoi en cours…'
+
+    var donnees = {}
+    new FormData(form).forEach(function (v, k) { if (k !== 'site_web') donnees[k] = v })
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(donnees),
+    })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json().catch(function(){return {}}) })
+      .then(function () {
+        // --- submit_lead : Google Ads, Microsoft UET (Meta est déclenché sur /merci)
+        if (window.gtag && ADS && LABEL) gtag('event', 'conversion', { send_to: ADS + '/' + LABEL })
+        if (window.gtag) gtag('event', 'submit_lead')
+        window.uetq = window.uetq || []
+        window.uetq.push('event', 'submit_lead', {})
+        location.href = URL_MERCI
+      })
+      .catch(function () {
+        btn.disabled = false
+        btn.textContent = 'Recevoir mon devis'
+        err.hidden = false
+        err.textContent = 'L’envoi a échoué. Merci de réessayer ou de nous appeler directement.'
+      })
+  })
+})()
+</script>

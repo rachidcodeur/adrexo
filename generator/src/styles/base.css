@@ -1,0 +1,71 @@
+/* Feuille unique, inlinée par Astro (build.inlineStylesheets = 'always').
+   Polices système : aucune requête de police, aucun décalage de mise en page. */
+:root{--bleu:#0b3d91;--bleu-clair:#e8eefb;--gris:#5b6472;--gris-clair:#f5f6f8;--bord:#e2e5ea;--texte:#1a1f28;--ok:#0a7c3f}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--texte);background:#fff}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+a{color:var(--bleu)}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .6em}
+h2{font-size:1.35rem;line-height:1.3;margin:2.2em 0 .6em}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:0 0 1em}
+header.site{border-bottom:1px solid var(--bord);padding:14px 0}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:700;font-size:1.15rem;color:var(--bleu);text-decoration:none}
+.tel-haut{font-weight:600;text-decoration:none;white-space:nowrap}
+nav.fil{font-size:.85rem;color:var(--gris);padding:12px 0}
+nav.fil a{color:var(--gris)}
+.hero{background:var(--gris-clair);padding:28px 0 32px;border-bottom:1px solid var(--bord)}
+.grille{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:900px){.grille{grid-template-columns:1.15fr .85fr;align-items:start}h1{font-size:2.3rem}}
+/* ------------------------------------------------------------ formulaire */
+.form-carte{background:#fff;border:1px solid var(--bord);border-radius:10px;padding:20px}
+.form-carte h2{margin:0 0 .3em;font-size:1.15rem}
+.form-carte .sous{font-size:.88rem;color:var(--gris);margin-bottom:1em}
+label{display:block;font-size:.85rem;font-weight:600;margin:0 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--bord);border-radius:6px;font:inherit;font-size:.95rem;background:#fff;margin-bottom:12px}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--bleu);outline-offset:0}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgpd{display:flex;gap:8px;align-items:flex-start;font-size:.78rem;color:var(--gris);font-weight:400;margin-bottom:12px}
+.rgpd input{width:auto;margin:3px 0 0}
+.pot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button{width:100%;padding:13px;background:var(--bleu);color:#fff;border:0;border-radius:6px;font:inherit;font-weight:600;font-size:1rem;cursor:pointer}
+button:hover{background:#092f6f}
+button[disabled]{opacity:.6;cursor:progress}
+.err{color:#b3261e;font-size:.85rem;margin:0 0 10px}
+/* ------------------------------------------------------------- contenu */
+main section{padding:4px 0}
+.chiffres{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0}
+@media(min-width:700px){.chiffres{grid-template-columns:repeat(4,1fr)}}
+.chiffre{background:var(--gris-clair);border-radius:8px;padding:14px}
+.chiffre b{display:block;font-size:1.25rem;color:var(--bleu)}
+.chiffre span{font-size:.8rem;color:var(--gris)}
+.faq details{border-bottom:1px solid var(--bord);padding:12px 0}
+.faq summary{font-weight:600;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+ ";color:var(--bleu);font-weight:700}
+.faq details[open] summary::before{content:"– "}
+.faq p{margin:.7em 0 0;color:var(--gris)}
+ul.communes{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:700px){ul.communes{grid-template-columns:repeat(4,1fr)}}
+ul.communes a{display:block;padding:9px 11px;background:var(--gris-clair);border-radius:6px;text-decoration:none;font-size:.88rem}
+ul.communes a:hover{background:var(--bleu-clair)}
+ul.communes small{display:block;color:var(--gris);font-size:.75rem}
+.rappel{background:var(--bleu-clair);border-radius:10px;padding:20px;margin:32px 0}
+.rappel p:last-child{margin:0}
+/* ------------------------------------------------------------- bas de page */
+footer.site{background:var(--gris-clair);border-top:1px solid var(--bord);margin-top:40px;padding:28px 0 90px;font-size:.85rem;color:var(--gris)}
+footer.site a{color:var(--gris)}
+footer.site .legal{margin-top:14px;padding-top:14px;border-top:1px solid var(--bord);font-size:.78rem}
+/* barre d'appel collante mobile (CDC bloc 6) */
+.barre-appel{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;background:var(--bleu);color:#fff;text-decoration:none;align-items:center;justify-content:center;gap:8px;padding:14px;font-weight:600;box-shadow:0 -2px 10px rgba(0,0,0,.15)}
+@media(min-width:900px){.barre-appel{display:none}footer.site{padding-bottom:28px}}
+/* bandeau de consentement */
+.consent{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:#fff;border:1px solid var(--bord);border-radius:10px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.18);font-size:.85rem}
+@media(min-width:900px){.consent{max-width:440px;left:auto;right:16px}}
+.consent p{margin:0 0 12px}
+.consent .actions{display:flex;gap:8px}
+.consent button{padding:9px}
+.consent button.refus{background:#fff;color:var(--texte);border:1px solid var(--bord)}

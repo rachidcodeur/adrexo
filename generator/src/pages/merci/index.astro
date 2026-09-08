@@ -1,0 +1,33 @@
+---
+/**
+ * PAGE DE CONVERSION — bloc 6 du CDC.
+ * Sert de page de destination après envoi réussi ; c'est ici qu'est déclenché
+ * l'événement Lead de Meta. Exclue de l'indexation.
+ */
+import Base from '../../layouts/Base.astro'
+import { SITE } from '../../site.config.mjs'
+---
+<Base titre={`Demande envoyée | ${SITE.nom}`}
+      description="Votre demande de devis a bien été enregistrée."
+      canonical="/merci/" noindex={true}>
+  <div class="wrap" style="padding:48px 20px;max-width:640px">
+    <h1>Votre demande est bien enregistrée</h1>
+    <p>
+      Merci. Un conseiller revient vers vous sous 24 heures ouvrées pour préciser
+      votre périmètre de diffusion et vous transmettre un chiffrage.
+    </p>
+    <div class="rappel">
+      <p><strong>Besoin d’une réponse immédiate ?</strong></p>
+      <p>
+        Appelez-nous au
+        <a href={`tel:${SITE.contact.telephone}`} data-appel>{SITE.contact.telephoneAffiche}</a>.
+      </p>
+    </div>
+    <p><a href="/">Retour à l’accueil</a></p>
+  </div>
+
+  <script is:inline>
+    // Événement Lead Meta — déclenché ici, conformément au bloc 7 du CDC.
+    if (window.fbq) fbq('track', 'Lead')
+  </script>
+</Base>

@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro'
+import { SITE } from '../../site.config.mjs'
+---
+<Base titre={`Politique de confidentialité | ${SITE.nom}`}
+      description="Traitement des données personnelles, finalités, durées de conservation, cookies et traceurs."
+      canonical="/politique-de-confidentialite/"
+      filAriane={[{ nom: 'Accueil', url: '/' }, { nom: 'Politique de confidentialité' }]}>
+  <div class="wrap" style="max-width:760px">
+    <h1>Politique de confidentialité</h1>
+
+    <h2>Responsable du traitement</h2>
+    <p>{SITE.legal.editeur}, SIRET {SITE.legal.siret}, éditeur de la marque {SITE.nom}.</p>
+
+    <h2>Données collectées</h2>
+    <p>
+      Via le formulaire de devis : nom et prénom, numéro de téléphone, code postal,
+      commune, type de distribution souhaité, délai et message libre. Sont également
+      enregistrés les identifiants de campagne publicitaire présents dans l’adresse
+      de la page d’arrivée (gclid, msclkid, fbclid, paramètres utm) ainsi que
+      l’adresse de cette page.
+    </p>
+
+    <h2>Finalités</h2>
+    <p>
+      Ces données servent exclusivement à traiter votre demande de devis, à vous
+      recontacter, et à mesurer l’efficacité de nos campagnes publicitaires. Elles ne
+      sont ni vendues, ni cédées à des tiers à des fins de prospection.
+    </p>
+
+    <h2>Base légale</h2>
+    <p>
+      Le traitement du formulaire repose sur votre consentement, recueilli par la case
+      à cocher accompagnant l’envoi. Le dépôt de traceurs de mesure publicitaire repose
+      sur le consentement recueilli via le bandeau affiché à votre première visite.
+    </p>
+
+    <h2>Durée de conservation</h2>
+    <p>
+      Les données de contact sont conservées trois ans à compter du dernier échange.
+      Les données de mesure publicitaire sont conservées treize mois au maximum.
+    </p>
+
+    <h2>Cookies et traceurs</h2>
+    <p>
+      Ce site dépose des traceurs de mesure d’audience et de suivi des conversions
+      publicitaires : Google Ads (mesure des conversions et remarketing), Microsoft
+      Advertising UET (mesure des conversions Bing) et le pixel Meta (mesure des
+      conversions Facebook et Instagram).
+    </p>
+    <p>
+      Aucun de ces traceurs n’est déposé avant votre acceptation. Tant que vous n’avez
+      pas répondu au bandeau, ou si vous refusez, le mode consentement de Google et le
+      signal de consentement Microsoft restent en position « refusé » : aucune donnée
+      publicitaire identifiante n’est transmise. Vous pouvez revenir sur votre choix à
+      tout moment en effaçant les données de site de votre navigateur, ce qui
+      réaffichera le bandeau.
+    </p>
+    <p>
+      Un stockage technique de session est également utilisé pour conserver les
+      identifiants de campagne le temps de votre visite. Il est nécessaire au
+      fonctionnement du formulaire et ne permet pas de vous identifier.
+    </p>
+
+    <h2>Vos droits</h2>
+    <p>
+      Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation
+      et d’opposition sur vos données, ainsi que du droit de retirer votre consentement
+      à tout moment. Pour l’exercer, contactez-nous au
+      {' '}{SITE.contact.telephoneAffiche}. Vous pouvez également introduire une
+      réclamation auprès de la CNIL.
+    </p>
+  </div>
+</Base>

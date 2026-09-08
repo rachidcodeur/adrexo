@@ -1,0 +1,180 @@
+---
+/**
+ * GABARIT DE BASE — appliqué aux 5 100+ pages.
+ * Contient le suivi (bloc 7 du CDC), le bandeau de consentement, la barre
+ * d'appel mobile et le pied de page légal.
+ */
+import { SITE } from '../site.config.mjs'
+import '../styles/base.css'
+
+const { titre, description, canonical, jsonLd = [], filAriane = [], noindex = false } = Astro.props
+const t = SITE.tracking
+const url = new URL(canonical, SITE.baseUrl).href
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{titre}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+{noindex && <meta name="robots" content="noindex,follow" />}
+<meta property="og:type" content="website" />
+<meta property="og:title" content={titre} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:locale" content="fr_FR" />
+
+{/* ------ Consent Mode v2 : déclaré AVANT toute balise, refus par défaut ---- */}
+<script is:inline>
+  window.dataLayer = window.dataLayer || []
+  function gtag() { dataLayer.push(arguments) }
+  window.gtag = gtag
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500,
+  })
+  // Signal de consentement Microsoft UET — sans lui, Bing rapporte
+  // « 0 % des événements de l'EEE ont reçu un signal de consentement ».
+  window.uetq = window.uetq || []
+  window.uetq.push('consent', 'default', { ad_storage: 'denied' })
+
+  try {
+    if (localStorage.getItem('consentement') === 'oui') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted', ad_user_data: 'granted',
+        ad_personalization: 'granted', analytics_storage: 'granted',
+      })
+      window.uetq.push('consent', 'update', { ad_storage: 'granted' })
+    }
+  } catch (e) {}
+</script>
+
+{t.googleAdsId && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${t.googleAdsId}`}></script>
+    <script is:inline set:html={`gtag('js', new Date()); gtag('config', '${t.googleAdsId}');`}></script>
+  </>
+)}
+
+{t.uetTagId && (
+  <script is:inline set:html={`
+    (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"${t.uetTagId}",enableAutoSpaTracking:false};
+    o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,
+    n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},
+    i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");`}></script>
+)}
+
+{t.metaPixelId && (
+  <script is:inline set:html={`
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('consent','revoke');fbq('init','${t.metaPixelId}');fbq('track','PageView');
+    try{if(localStorage.getItem('consentement')==='oui')fbq('consent','grant')}catch(e){}`}></script>
+)}
+
+{jsonLd.map((bloc) => (
+  <script type="application/ld+json" set:html={JSON.stringify(bloc)}></script>
+))}
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/">{SITE.nom}</a>
+    <a class="tel-haut" href={`tel:${SITE.contact.telephone}`} data-appel>
+      {SITE.contact.telephoneAffiche}
+    </a>
+  </div>
+</header>
+
+{filAriane.length > 0 && (
+  <nav class="fil" aria-label="Fil d’Ariane">
+    <div class="wrap">
+      {filAriane.map((c, i) => (
+        <>
+          {i > 0 && <span> › </span>}
+          {c.url ? <a href={c.url}>{c.nom}</a> : <span>{c.nom}</span>}
+        </>
+      ))}
+    </div>
+  </nav>
+)}
+
+<main>
+  <slot />
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p><strong>{SITE.nom}</strong> — {SITE.activite.principal} sur l’ensemble du territoire français.</p>
+    <p>{SITE.legal.mentionFooter} — SIRET {SITE.legal.siret}</p>
+    <p>
+      <a href={SITE.urls.mentionsLegales}>Mentions légales</a> ·
+      <a href={SITE.urls.confidentialite}>Politique de confidentialité</a> ·
+      <a href="/departements/">Tous les départements</a>
+    </p>
+    <p class="legal">
+      {SITE.nom} intervient en qualité d’opérateur de distribution et ne dispose pas
+      d’établissement dans chacune des communes présentées sur ce site.
+    </p>
+  </div>
+</footer>
+
+<a class="barre-appel" href={`tel:${SITE.contact.telephone}`} data-appel>
+  Appeler le {SITE.contact.telephoneAffiche}
+</a>
+
+<div class="consent" id="consent" hidden>
+  <p>
+    Nous utilisons des traceurs pour mesurer l’audience et l’efficacité de nos campagnes
+    publicitaires. Vous pouvez accepter ou refuser leur dépôt.
+    <a href={SITE.urls.confidentialite}>En savoir plus</a>.
+  </p>
+  <div class="actions">
+    <button type="button" id="consent-oui">Accepter</button>
+    <button type="button" class="refus" id="consent-non">Refuser</button>
+  </div>
+</div>
+
+<script is:inline>
+  // --- bandeau de consentement -------------------------------------------
+  ;(function () {
+    var boite = document.getElementById('consent')
+    var choix = null
+    try { choix = localStorage.getItem('consentement') } catch (e) {}
+    if (!choix) boite.hidden = false
+
+    function repondre(valeur) {
+      try { localStorage.setItem('consentement', valeur) } catch (e) {}
+      boite.hidden = true
+      if (valeur === 'oui') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted', ad_user_data: 'granted',
+          ad_personalization: 'granted', analytics_storage: 'granted',
+        })
+        window.uetq = window.uetq || []
+        window.uetq.push('consent', 'update', { ad_storage: 'granted' })
+        if (window.fbq) fbq('consent', 'grant')
+      }
+    }
+    document.getElementById('consent-oui').onclick = function () { repondre('oui') }
+    document.getElementById('consent-non').onclick = function () { repondre('non') }
+  })()
+
+  // --- événement click_phone (CDC bloc 7) --------------------------------
+  document.querySelectorAll('[data-appel]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (window.gtag) gtag('event', 'click_phone')
+      window.uetq = window.uetq || []
+      window.uetq.push('event', 'click_phone', {})
+      if (window.fbq) fbq('trackCustom', 'ClickPhone')
+    })
+  })
+</script>
+</body>
+</html>

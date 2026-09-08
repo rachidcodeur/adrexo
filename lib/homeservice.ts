@@ -7,8 +7,9 @@ export const HOMESERVICE_ENDPOINT =
   process.env.HOMESERVICE_LEAD_ENDPOINT ||
   'https://europe-west1-app-home-service.cloudfunctions.net/receiveLead'
 
-/** Activité de ce site, libellé tel qu'affiché sur https://homeservice-pro.fr/admin/activites */
-export const HOMESERVICE_ACTIVITE = process.env.HOMESERVICE_ACTIVITE || 'Distribution de flyers'
+/** Slug de l'activité de ce site (liste : https://homeservice-pro.fr/admin/activites).
+ *  HomeService attend le slug, pas le libellé : `toiture` s'affiche « Toiture / Couverture ». */
+export const HOMESERVICE_ACTIVITE = process.env.HOMESERVICE_ACTIVITE || 'distribution-de-flyers'
 
 /** Source du lead côté HomeService : nom du site, demandé par le client. */
 export const HOMESERVICE_ORIGINE = process.env.HOMESERVICE_ORIGINE || 'Adrexo'
@@ -71,11 +72,9 @@ export function buildHomeServicePayload(input: LeadInput): HomeServicePayload {
     throw new Error('Code postal invalide')
   }
 
-  const message = [
-    input.sujet ? `Sujet : ${input.sujet}` : null,
-    input.message,
-    input.page ? `Page : ${input.page}` : null,
-  ]
+  // La page d'origine est archivée dans Supabase, mais pas envoyée à HomeService :
+  // le message sert de description du lead côté back-office.
+  const message = [input.sujet ? `Sujet : ${input.sujet}` : null, input.message]
     .filter(Boolean)
     .join('\n\n')
 

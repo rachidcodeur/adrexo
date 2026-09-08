@@ -1,0 +1,139 @@
+---
+/**
+ * PAGE VILLE — 5 001 pages générées en une passe.
+ *
+ * Conformité (bloc 5 du CDC) :
+ *   - aucun avis client, aucune note, aucun aggregateRating ;
+ *   - aucun bloc PostalAddress : le JSON-LD décrit un Service avec areaServed ;
+ *   - mentions légales et politique de confidentialité liées depuis le pied de page.
+ */
+import Base from '../../../layouts/Base.astro'
+import Formulaire from '../../../components/Formulaire.astro'
+import { villes, urlVille, urlDept, deptParSlug } from '../../../lib/dataset.mjs'
+import { construirePage } from '../../../lib/render.mjs'
+import { nombre } from '../../../lib/geo.mjs'
+import { SITE } from '../../../site.config.mjs'
+
+export function getStaticPaths() {
+  return villes.map((v) => ({ params: { dept: v.deptSlug, ville: v.slug }, props: { v } }))
+}
+
+const { v } = Astro.props
+const page = construirePage(v)
+const dept = deptParSlug.get(v.deptSlug)
+const canonical = urlVille(v)
+
+// --- Données structurées ----------------------------------------------------
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `${SITE.activite.principal} ${page.data.villePrep}`,
+    serviceType: SITE.activite.principal,
+    description: page.meta.description,
+    provider: {
+      '@type': 'Organization',
+      name: SITE.nom,
+      url: SITE.baseUrl,
+      // Volontairement sans PostalAddress : aucune implantation locale revendiquée.
+    },
+    areaServed: {
+      '@type': 'City',
+      name: v.nom,
+      postalCode: v.codePostal,
+      containedInPlace: { '@type': 'AdministrativeArea', name: v.departement },
+    },
+    url: new URL(canonical, SITE.baseUrl).href,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: page.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.reponse },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE.baseUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: v.departement, item: new URL(urlDept(dept), SITE.baseUrl).href },
+      { '@type': 'ListItem', position: 3, name: v.nom, item: new URL(canonical, SITE.baseUrl).href },
+    ],
+  },
+]
+
+const filAriane = [
+  { nom: 'Accueil', url: '/' },
+  { nom: v.departement, url: urlDept(dept) },
+  { nom: v.nom },
+]
+---
+<Base titre={page.meta.titre} description={page.meta.description}
+      canonical={canonical} jsonLd={jsonLd} filAriane={filAriane}>
+
+  <section class="hero">
+    <div class="wrap grille">
+      <div>
+        <h1>{page.meta.h1}</h1>
+        {page.sections[0].paragraphes.map((p) => <p>{p}</p>)}
+
+        <div class="chiffres">
+          <div class="chiffre"><b>{nombre(v.population)}</b><span>habitants</span></div>
+          <div class="chiffre"><b>{nombre(v.boites)}</b><span>boîtes aux lettres estimées</span></div>
+          <div class="chiffre"><b>{nombre(v.densite)}</b><span>hab./km²</span></div>
+          <div class="chiffre"><b>{v.codePostal}</b><span>code postal</span></div>
+        </div>
+      </div>
+
+      <Formulaire ville={v.nom} codePostal={v.codePostal} contexte={`ville:${v.deptSlug}/${v.slug}`} />
+    </div>
+  </section>
+
+  <div class="wrap">
+    {page.sections.slice(1).map((s) => (
+      <section>
+        <h2>{s.titre}</h2>
+        {s.paragraphes.map((p) => <p>{p}</p>)}
+      </section>
+    ))}
+
+    <section class="faq">
+      <h2>Questions fréquentes sur la distribution {page.data.villePrep}</h2>
+      {page.faq.map((f) => (
+        <details>
+          <summary>{f.question}</summary>
+          <p>{f.reponse}</p>
+        </details>
+      ))}
+    </section>
+
+    <section>
+      <h2>Communes voisines {page.data.deVille}</h2>
+      <p>
+        Nos tournées couvrent également les communes proches {page.data.deVille}.
+        Chacune peut être ajoutée au périmètre de votre campagne.
+      </p>
+      <ul class="communes">
+        {v.voisines.map((c) => (
+          <li>
+            <a href={`/${c.deptSlug}/${c.slug}/`}>
+              {c.nom}<small>{c.codePostal} · {c.km} km</small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="rappel">
+      <h2 style="margin-top:0">Organiser votre distribution {page.data.villePrep}</h2>
+      <p>{page.cta}</p>
+      <p>
+        Voir aussi toutes les communes {page.data.duDept} :
+        <a href={urlDept(dept)}>distribution {page.data.deptPrep}</a>.
+      </p>
+    </div>
+  </div>
+</Base>

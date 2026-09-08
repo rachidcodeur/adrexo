@@ -1,0 +1,16 @@
+{
+  "name": "adrexo-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "node scripts/audit.mjs",
+    "data": "node scripts/build-data.mjs"
+  },
+  "dependencies": {
+    "astro": "^4.16.18"
+  }
+}
